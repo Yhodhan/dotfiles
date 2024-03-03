@@ -1,0 +1,8 @@
+theme = "dracula_at_night"
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+"Z" = {Q = ":q!", Z = ":x", X = ":bc"}
+
+[editor.cursor-shape]
+insert = "bar"⏎               
