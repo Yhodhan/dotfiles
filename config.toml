@@ -1,8 +1,11 @@
-theme = "dracula_at_night"
+theme = "transparent_hex_steel"
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
 "Z" = {Q = ":q!", Z = ":x", X = ":bc"}
 
+[editor]
+gutters = ["diagnostics", "spacer", "diff"]
+
 [editor.cursor-shape]
-insert = "bar"⏎               
+insert = "bar" 

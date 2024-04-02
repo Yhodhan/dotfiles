@@ -1,0 +1,7 @@
+inherits = "hex_steel"
+"ui.background" = {bg = "bg_transparent"}
+"ui.background.separator" = "gray"
+
+"ui.linenr" = {}
+"ui.linenr.selected" = {}
+"ui.gutter" = {}

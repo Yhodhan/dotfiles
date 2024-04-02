@@ -1,0 +1,5 @@
+inherits = "autumn_night"
+"ui.background" = {}
+"ui.linenr" = {}
+"ui.linenr.selected" = {}
+"ui.gutter" = {}
