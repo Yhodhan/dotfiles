@@ -20,22 +20,22 @@ return {
     -- }
     {
       key = "v",
-      mods = "CTRL",
+      mods = "ALT",
       action = wezterm.action.SplitVertical {domain = 'CurrentPaneDomain'}
     },
     {
       key = "h",
-      mods = "CTRL",
+      mods = "ALT",
       action = wezterm.action.SplitHorizontal {domain = 'CurrentPaneDomain'}
     },
     {
       key = "h",
-      mods = "ALT",
+      mods = "SHIFT",
       action = wezterm.action.ActivatePaneDirection 'Left'
     },
     {
       key = "l",
-      mods = "ALT",
+      mods = "SHIFT",
       action = wezterm.action.ActivatePaneDirection 'Right'
     }
   }
