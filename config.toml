@@ -1,10 +1,12 @@
-theme = "horizon_transparent"
+theme = "monokai_pro_machine"
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
 "Z" = {Q = ":q!", Z = ":x", X = ":bc"}
 "v" = {v = ":w"}
 "r" = {r = ":reload-all"}
+"V" = "select_mode"
+"Y" = {Y = ":clipboard-yank", C = ":clipboard-paste-after"} 
 
 # [editor]
 # gutters = ["diagnostics", "spacer", "diff"]
