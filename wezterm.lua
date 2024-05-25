@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 
 return {
-  default_prog = {"nu"},
+  -- default_prog = {"nu"},
   color_scheme = "Andromeda",
   -- window_background_opacity = 0.8,
   enable_tab_bar = false,
