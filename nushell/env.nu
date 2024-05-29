@@ -9,8 +9,8 @@ def create_left_prompt [] {
         $relative_pwd => ([~ $relative_pwd] | path join)
     }
 
-    let path_color = (if (is-admin) { ansi red_bold } else { ansi purple_bold })
-    let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_purple_bold })
+    let path_color = (ansi red_bold)
+    let separator_color = (ansi red_bold)
     let path_segment = $"($path_color)($dir)"
 
     let path = $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
