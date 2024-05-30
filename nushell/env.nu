@@ -5,8 +5,8 @@
 def create_left_prompt [] {
     let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
-        '' => '~'
-        $relative_pwd => ([~ $relative_pwd] | path join)
+        '' => ' ~'
+        $relative_pwd => ([' ' $relative_pwd] | path join)
     }
 
     let path_color = (ansi red_bold)
@@ -14,7 +14,7 @@ def create_left_prompt [] {
     let path_segment = $"($path_color)($dir)"
 
     let path = $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
-    [(ansi reset) (ansi purple) "⋊>", $path] | str join
+    [(ansi reset) (ansi red_bold) "⋊>", $path] | str join
 }
 
 def create_right_prompt [] {
