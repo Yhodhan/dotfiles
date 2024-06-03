@@ -1,9 +1,8 @@
 local wezterm = require("wezterm")
 
 return {
-  -- default_prog = {"nu"},
   color_scheme = "Andromeda",
-  -- window_background_opacity = 0.8,
+  window_background_opacity = 0.6,
   enable_tab_bar = false,
   window_padding = {
     left = 0.5,
@@ -11,10 +10,12 @@ return {
     top = 0.5,
     bottom = 0.5,
   },
-  exit_behavior_messaging = "None",
-  exit_behavior = "Close",
+  font_size = 22.0;
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
-  window_decorations = "RESIZE",
+  window_decorations = "NONE",
+  window_close_confirmation = "NeverPrompt",
+  exit_behavior = "Close",
+  exit_behavior_messaging = "None",
   keys = {
     {
       key = "v",
@@ -26,25 +27,15 @@ return {
       mods = "ALT",
       action = wezterm.action.SplitHorizontal {domain = 'CurrentPaneDomain'}
     },
-    {
-      key = "j",
-      mods = "CTRL",
-      action = wezterm.action.ActivatePaneDirection 'Left'
-    },
-    {
-      key = ";",
-      mods = "CTRL",
-      action = wezterm.action.ActivatePaneDirection 'Right'
-    },
-    {
-      key = "k",
-      mods = "CTRL",
-      action = wezterm.action.ActivatePaneDirection 'Up'
-    },
-    {
-      key = "l",
-      mods = "CTRL",
-      action = wezterm.action.ActivatePaneDirection 'Down'
-    }
+    -- {
+    --   key = "h",
+    --   mods = "SHIFT",
+    --   action = wezterm.action.ActivatePaneDirection 'Left'
+    -- },
+    -- {
+    --   key = "l",
+    --   mods = "SHIFT",
+    --   action = wezterm.action.ActivatePaneDirection 'Right'
+    -- }
   }
 }
