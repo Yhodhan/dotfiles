@@ -35,7 +35,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # set wallpaper
-exec --no-startup-id feh --no-fehbg --bg-fill $HOME/Downloads/violet_forest.jpg
+exec --no-startup-id feh --no-fehbg --bg-fill $HOME/Downloads/dragon.jpg
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -49,11 +49,11 @@ floating_modifier $mod
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+#tiling_drag modifier titlebar
 
 # start a terminal
 
-bindsym $mod+Return exec alacritty 
+bindsym $mod+Return exec wezterm 
 
 #bindsym $mod+Return exec i3-sensible-terminal 
 
@@ -206,4 +206,4 @@ gaps outer 10
 
 # Customs 2285577
 
-client.focused  #E60283 #000000 #E60283 #E60283 #E60283
+client.focused  #000000 #000000 #000000 #000000 #000000
