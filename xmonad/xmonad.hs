@@ -15,6 +15,7 @@ import XMonad.Layout.Magnifier
 import XMonad.Layout.ThreeColumns
 
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.InsertPosition (insertPosition, Focus(Newer), Position(End))
 
 
 main :: IO ()
@@ -30,7 +31,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launching and killing programs
     [ ((modMask, xK_Return), spawn "wezterm") -- %! Launch terminal
     , ((modMask,               xK_d     ), spawn "dmenu_run") -- %! Launch dmenu
-    , ((modMask .|. shiftMask, xK_p     ), spawn "gmrun") -- %! Launch gmrun
     , ((modMask, xK_q     ), kill) -- %! Close the focused window
 
     , ((modMask,               xK_space ), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
@@ -86,7 +86,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   --   helpCommand = xmessage help
 
 myConfig = def
-    { modMask    = mod1Mask      -- Rebind Mod to the Super key
+    { modMask    = mod4Mask      -- Rebind Mod to the Super key
     , layoutHook = myLayout      -- Use custom layouts
     , manageHook = myManageHook  -- Match on certain windows
     , terminal   = "wezterm"
@@ -95,8 +95,7 @@ myConfig = def
 
 myManageHook :: ManageHook
 myManageHook = composeAll
-    [ className =? "Gimp" --> doFloat
-    , isDialog            --> doFloat
+    [ insertPosition End Newer -- open new windows at the end
     ]
 
 myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
