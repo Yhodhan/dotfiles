@@ -83,9 +83,6 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-  -- where
-  --   helpCommand :: X ()
-  --   helpCommand = xmessage help
 
 myConfig = def
     { modMask    = mod4Mask      -- Rebind Mod to the Super key
