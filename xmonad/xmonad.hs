@@ -13,7 +13,8 @@ import XMonad.Util.Loggers
 import System.Exit
 import XMonad.Layout.Magnifier
 import XMonad.Layout.ThreeColumns
-
+import XMonad.Layout.Gaps
+import XMonad.Layout.Spacing
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.InsertPosition (insertPosition, Focus(Newer), Position(End))
 
@@ -32,6 +33,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     [ ((modMask, xK_Return), spawn "wezterm") -- %! Launch terminal
     , ((modMask,               xK_d     ), spawn "dmenu_run") -- %! Launch dmenu
     , ((modMask, xK_q     ), kill) -- %! Close the focused window
+    , ((modMask, xK_f     ), spawn "firefox") -- open firefox in a convenient way
 
     , ((modMask,               xK_space ), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
@@ -87,7 +89,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 myConfig = def
     { modMask    = mod4Mask      -- Rebind Mod to the Super key
-    , layoutHook = myLayout      -- Use custom layouts
+    , layoutHook = gaps [(U,10), (R,10), (L, 10), (D, 10)] $ spacing 5 $ Tall 1 (3/100) (1/2) ||| Full  -- leave gaps at the top and right
     , manageHook = myManageHook  -- Match on certain windows
     , terminal   = "wezterm"
     , keys       = myKeys
@@ -98,13 +100,6 @@ myManageHook = composeAll
     [ insertPosition End Newer -- open new windows at the end
     ]
 
-myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
-  where
-    threeCol = magnifiercz' 1.3 $ ThreeColMid nmaster delta ratio
-    tiled    = Tall nmaster delta ratio
-    nmaster  = 1      -- Default number of windows in the master pane
-    ratio    = 1/2    -- Default proportion of screen occupied by master pane
-    delta    = 3/100  -- Percent of screen to increment by when resizing panes
 
 myXmobarPP :: PP
 myXmobarPP = def
