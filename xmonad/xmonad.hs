@@ -18,7 +18,6 @@ import XMonad.Layout.Spacing
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.InsertPosition (insertPosition, Focus(Newer), Position(End))
 
-
 main :: IO ()
 main = xmonad
      . ewmhFullscreen
@@ -26,7 +25,12 @@ main = xmonad
      . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
      $ myConfig
 
+-----------------------------------------------------------------------------------
+-- Change border color
 
+myFocusedBorderColor = "#FF00FF"
+
+-----------------------------------------------------------------------------------
 -- rebinding
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launching and killing programs
@@ -84,19 +88,32 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
+-----------------------------------------------------------------------------------
+-- Override standart configuration
+
 myConfig = def
     { modMask    = mod4Mask      -- Rebind Mod to the Super key
-    , layoutHook = gaps [(U,10), (R,10), (L, 10), (D, 10)] $ spacing 5 $ Tall 1 (3/100) (1/2) ||| Full  -- leave gaps at the top and right
+    , layoutHook = myLayoutHook
     , manageHook = myManageHook  -- Match on certain windows
     , terminal   = "wezterm"
     , keys       = myKeys
+    , focusedBorderColor = myFocusedBorderColor
     }
+
+-----------------------------------------------------------------------------------
+-- Change layout
+
+myLayoutHook = gaps [(U,10), (R,10), (L, 10), (D, 10)] $ spacing 5 $ Tall 1 (3/100) (1/2) ||| Full  -- leave gaps at the top and right
+
+-----------------------------------------------------------------------------------
+-- Change stacking order
 
 myManageHook :: ManageHook
 myManageHook = composeAll
     [ insertPosition End Newer -- open new windows at the end
     ]
 
+-----------------------------------------------------------------------------------
 
 myXmobarPP :: PP
 myXmobarPP = def
