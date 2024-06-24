@@ -3,8 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(evil-tutor-sc evil-tutor-ja cyberpunk-theme cyberpunk-2019-theme cybercafe-theme)))
+ '(package-selected-packages '(cyberpunk-theme cybercafe-theme evil-tutor-sc)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
