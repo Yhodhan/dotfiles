@@ -42,6 +42,11 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
+;; Avoids emacs to show the exit prompt
+(setq confirm-kill-emacs nil)
+
+;; Avoids evil to go character backward when pressing ESP
+(setq evil-move-cursor-back nil)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -74,5 +79,17 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(use-package! nerd-icons)
-;;(use-package! avy)
+
+;; key-chord configuration
+;; inspired by helix
+(require 'key-chord)
+
+(key-chord-define evil-normal-state-map "gl" 'evil-end-of-line)
+(key-chord-define evil-normal-state-map "gh" 'evil-beginning-of-line)
+;; buffer control
+(key-chord-define evil-normal-state-map "gn" 'next-buffer)
+(key-chord-define evil-normal-state-map "gp" 'previous-buffer)
+(key-chord-define evil-normal-state-map "ge" 'end-of-buffer)
+(key-chord-define evil-normal-state-map "bk" 'end-of-buffer)
+
+(key-chord-mode 1)
