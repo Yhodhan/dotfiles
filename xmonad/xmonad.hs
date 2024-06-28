@@ -10,6 +10,7 @@ import qualified Data.Map as M
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
+import XMonad.Util.SpawnOnce
 import System.Exit
 import XMonad.Layout.Magnifier
 import XMonad.Layout.ThreeColumns
@@ -18,11 +19,11 @@ import XMonad.Layout.Spacing
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.InsertPosition (insertPosition, Focus(Newer), Position(End))
 
+
 main :: IO ()
-main = xmonad
+main =  xmonad
      . ewmhFullscreen
      . ewmh
-     . withEasySB (statusBarProp "xmobar" (pure myXmobarPP)) defToggleStrutsKey
      $ myConfig
 
 -----------------------------------------------------------------------------------
@@ -35,7 +36,7 @@ myFocusedBorderColor = "#FF00FF"
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launching and killing programs
     [ ((modMask, xK_Return), spawn "wezterm") -- %! Launch terminal
-    , ((modMask,               xK_d     ), spawn "dmenu_run") -- %! Launch dmenu
+    , ((modMask,               xK_p     ), spawn "dmenu_run") -- %! Launch dmenu
     , ((modMask, xK_q     ), kill) -- %! Close the focused window
     , ((modMask, xK_f     ), spawn "firefox") -- open firefox in a convenient way
 
@@ -92,14 +93,25 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- Override standart configuration
 
 myConfig = def
-    { modMask    = mod4Mask      -- Rebind Mod to the Super key
+    { modMask    = mod1Mask      -- Rebind Mod to the Super key
     , layoutHook = myLayoutHook
     , manageHook = myManageHook  -- Match on certain windows
-    , terminal   = "wezterm"
+    , terminal   = myTerminal 
     , keys       = myKeys
     , focusedBorderColor = myFocusedBorderColor
+    , startupHook = myStartupHook
     }
 
+-----------------------------------------------------------------------------------
+-- Change terminal
+
+myTerminal = "wezterm" 
+
+-----------------------------------------------------------------------------------
+-- Startup functions
+
+myStartupHook = do
+	spawnOnce "~/.config/set-xmonad-wallpaper"
 -----------------------------------------------------------------------------------
 -- Change layout
 
