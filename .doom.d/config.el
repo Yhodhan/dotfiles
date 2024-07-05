@@ -100,7 +100,7 @@
         (evil-terminal-cursor-changer-activate))
 
 
-;; to change cursor color use echo -ne '\033]12;red\007'
+;; to change cursor color use echo -ne '\033]12;deeppink\007'
 (setq evil-motion-state-cursor 'box)
 (setq evil-normal-state-cursor 'box)
 (setq evil-insert-state-cursor 'bar)
