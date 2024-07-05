@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -36,7 +36,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # set wallpaper
-exec --no-startup-id feh --no-fehbg --bg-fill $HOME/Downloads/p.jpg
+exec --no-startup-id feh --no-fehbg --bg-fill $HOME/Downloads/atlas.jpg
 
 # set warpd
 exec --no-startup-id warpd
@@ -209,4 +209,4 @@ gaps outer 10
 
 # Customs 2285577
 
-client.focused  #000000 #000000 #000000 #000000 #000000
+client.focused  #FF00FF #FF00FF #FF00FF #FF00FF #FF00FF

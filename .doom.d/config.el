@@ -32,7 +32,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-henna)
+
+(setq doom-theme 'doom-horizon)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -90,6 +91,17 @@
 (key-chord-define evil-normal-state-map "gn" 'next-buffer)
 (key-chord-define evil-normal-state-map "gp" 'previous-buffer)
 (key-chord-define evil-normal-state-map "ge" 'end-of-buffer)
-(key-chord-define evil-normal-state-map "bk" 'end-of-buffer)
+(key-chord-define evil-normal-state-map "bk" 'kill-current-buffer)
 
 (key-chord-mode 1)
+
+(unless (display-graphic-p)
+        (require 'evil-terminal-cursor-changer)
+        (evil-terminal-cursor-changer-activate))
+
+
+;; to change cursor color use echo -ne '\033]12;red\007'
+(setq evil-motion-state-cursor 'box)
+(setq evil-normal-state-cursor 'box)
+(setq evil-insert-state-cursor 'bar)
+(setq evil-motion-state-cursor 'box)
