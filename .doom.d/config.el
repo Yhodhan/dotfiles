@@ -80,7 +80,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-
+;;
 ;; key-chord configuration
 ;; inspired by helix
 (require 'key-chord)
@@ -91,17 +91,41 @@
 (key-chord-define evil-normal-state-map "gn" 'next-buffer)
 (key-chord-define evil-normal-state-map "gp" 'previous-buffer)
 (key-chord-define evil-normal-state-map "ge" 'end-of-buffer)
-(key-chord-define evil-normal-state-map "bk" 'kill-current-buffer)
+(key-chord-define evil-normal-state-map "bk" 'kill-current-buffer);
+;; matching mode
+;; function example without matchit
+;; (defun match-paren (arg)
+;;   "Go to the matching symbol."
+;;   (interactive "p")
+;;   (cond ((looking-at "\\s(") (forward-list 1) (backward-char 1))
+;;         ((looking-at "\\s)") (forward-char 1) (backward-list 1))
+;;         ((looking-at "\\s[") (forward-list 1) (backward-char 1))
+;;         ((looking-at "\\s]") (forward-char 1) (backward-list 1))
+;;         ((looking-at "\\s{") (forward-list 1) (backward-char 1))
+;;         ((looking-at "\\s}") (forward-char 1) (backward-list 1))
+;;         ))
+;;(key-chord-define evil-normal-state-map "mm" 'match-paren)
+;;
+(require 'evil-matchit)
+(key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
+(key-chord-define evil-visual-state-map "mm" 'evilmi-jump-items)
 
 (key-chord-mode 1)
 
+;; change cursor color and shape
 (unless (display-graphic-p)
         (require 'evil-terminal-cursor-changer)
         (evil-terminal-cursor-changer-activate))
 
-
 ;; to change cursor color use echo -ne '\033]12;deeppink\007'
-(setq evil-motion-state-cursor 'box)
 (setq evil-normal-state-cursor 'box)
 (setq evil-insert-state-cursor 'bar)
-(setq evil-motion-state-cursor 'box)
+
+(require 'evil-snipe)
+
+(evil-snipe-mode +1)
+
+(defun turn-off-evil-snipe()
+  (evil-snipe-mode nil))
+
+(add-hook 'magit-mode-hook 'turn-off-evil-snipe)
