@@ -84,6 +84,7 @@
 ;; key-chord configuration
 ;; inspired by helix
 (require 'key-chord)
+(key-chord-mode 1)
 
 (key-chord-define evil-normal-state-map "gl" 'evil-end-of-line)
 (key-chord-define evil-normal-state-map "gh" 'evil-beginning-of-line)
@@ -95,7 +96,7 @@
 ;; matching mode
 ;; function example without matchit
 ;; (defun match-paren (arg)
-;;   "Go to the matching symbol."
+;;   "go to the matching symbol."
 ;;   (interactive "p")
 ;;   (cond ((looking-at "\\s(") (forward-list 1) (backward-char 1))
 ;;         ((looking-at "\\s)") (forward-char 1) (backward-list 1))
@@ -105,12 +106,9 @@
 ;;         ((looking-at "\\s}") (forward-char 1) (backward-list 1))
 ;;         ))
 ;;(key-chord-define evil-normal-state-map "mm" 'match-paren)
-;;
 (require 'evil-matchit)
 (key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
 (key-chord-define evil-visual-state-map "mm" 'evilmi-jump-items)
-
-(key-chord-mode 1)
 
 ;; change cursor color and shape
 (unless (display-graphic-p)
@@ -124,8 +122,20 @@
 (require 'evil-snipe)
 
 (evil-snipe-mode +1)
-
+;; deactivate snipe in magit
 (defun turn-off-evil-snipe()
   (evil-snipe-mode nil))
-
 (add-hook 'magit-mode-hook 'turn-off-evil-snipe)
+
+;; ADDuu multiple cursors
+(require 'multiple-cursors)
+;; multiple cursors uses vanilla emacs keybindins to move arround
+;; but this overrides are more convinient
+(global-set-key (kbd "M-c") 'mc/mark-next-lines)
+(global-set-key (kbd "M-n") 'mc/edit-lines)
+;; Notes on basic vanilla emacs movement
+;; C-f move forward
+;; C-b move backward
+;; C-n next line
+;; C-p previous line
+;; C-/ undo
