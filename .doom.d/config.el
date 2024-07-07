@@ -17,8 +17,7 @@
 ;; Avoids evil to go character backward when pressing ESP
 (setq evil-move-cursor-back nil)
 
-;; key-chord configuration
-;; inspired by helix
+;; key-chord configuration inspired by helix
 (require 'key-chord)
 (key-chord-mode 1)
 
@@ -57,7 +56,8 @@
 ;; multiple-cursors packages uses vanilla emacs keybindins to move arround
 ;; but this overrides are more convinient
 (global-set-key (kbd "M-c") 'mc/mark-next-lines)
-(global-set-key (kbd "M-n") 'mc/mark-all-like-this)
+(global-set-key (kbd "M-a") 'mc/mark-all-like-this)
+(global-set-key (kbd "M-d") 'mc/mark-all-dwim)
 (global-set-key (kbd "C-,") 'mc/edit-lines)
 ;; Notes on basic vanilla emacs movement
 ;; C-f move forward  | C-b move backward
