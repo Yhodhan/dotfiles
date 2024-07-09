@@ -54,12 +54,12 @@
 ;; Add multiple cursors
 (require 'multiple-cursors)
 ;; multiple-cursors packages uses vanilla emacs keybindins to move arround
-;; but this overrides are more convinient
-(global-set-key (kbd "M-c") 'mc/mark-next-lines)
-(global-set-key (kbd "M-a") 'mc/mark-all-like-this)
-(global-set-key (kbd "M-d") 'mc/mark-all-dwim)
-(global-set-key (kbd "C-,") 'mc/edit-lines)
-;; Notes on basic vanilla emacs movement
+;; but this overrides are more convinient to swap modes and spawn the cursors
+(global-set-key (kbd "M-c") 'set-rectangular-region-anchor)
+(global-set-key (kbd "M-n") 'evil-normal-state)
+(global-set-key (kbd "M-a") 'mc/mark-all-dwim)
+(global-set-key (kbd "M-.") 'mc/mark-all-like-this)
+;; NOTES on basic vanilla emacs movement
 ;; C-f move forward  | C-b move backward
 ;; C-n next line     | C-p previous line
 ;; C-a start of line | C-e end of line
