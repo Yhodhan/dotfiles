@@ -3,6 +3,12 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-horizon)
 
+;; enable golden ratio
+(require 'zoom)
+(setq zoom-mode t)
+(custom-set-variables
+ '(zoom-size '(0.618 . 0.618)))
+
 ;; denable lines truncation
 (set-default 'truncate-lines nil)
 
@@ -22,15 +28,17 @@
 
 ;; key-chord configuration inspired by helix
 (require 'key-chord)
-(key-chord-mode 1)
+(key-chord-mode t)
 
 (key-chord-define evil-normal-state-map "gl" 'evil-end-of-line)
 (key-chord-define evil-normal-state-map "gh" 'evil-beginning-of-line)
+
 ;; buffer control
 (key-chord-define evil-normal-state-map "gn" 'next-buffer)
 (key-chord-define evil-normal-state-map "gp" 'previous-buffer)
 (key-chord-define evil-normal-state-map "ge" 'end-of-buffer)
 (key-chord-define evil-normal-state-map "bk" 'kill-current-buffer);
+(key-chord-define evil-normal-state-map "vv" 'basic-save-buffer);
 
 ;; matching mode
 (require 'evil-matchit)
@@ -46,14 +54,6 @@
 (setq evil-normal-state-cursor 'box)
 (setq evil-insert-state-cursor 'bar)
 
-(require 'evil-snipe)
-
-(evil-snipe-mode +1)
-;; deactivate snipe in magit
-(defun turn-off-evil-snipe()
-  (evil-snipe-mode nil))
-(add-hook 'magit-mode-hook 'turn-off-evil-snipe)
-
 ;; Add multiple cursors
 (require 'multiple-cursors)
 ;; multiple-cursors packages uses vanilla emacs keybindins to move arround
@@ -67,3 +67,5 @@
 ;; C-n next line     | C-p previous line
 ;; C-a start of line | C-e end of line
 ;; C-/ undo          | C-j create new line
+;; C-x 0 delete window | C-x 1 delete other windows
+;; C-x 2 spawn horizontal | C-x 3 spawn vertical
