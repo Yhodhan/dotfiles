@@ -3,6 +3,9 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-horizon)
 
+;; denable lines truncation
+(set-default 'truncate-lines nil)
+
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
