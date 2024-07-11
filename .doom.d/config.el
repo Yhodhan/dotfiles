@@ -10,7 +10,7 @@
  '(zoom-size '(0.618 . 0.618)))
 
 ;; denable lines truncation
-(set-default 'truncate-lines nil)
+(setq truncate-lines t)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -43,7 +43,7 @@
 ;; matching mode
 (require 'evil-matchit)
 (key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
-(key-chord-define evil-visual-state-map "mm" 'evilmi-jump-items)
+(key-chord-define evil-normal-state-map "md" 'evilmi-delete-items)
 
 ;; change cursor color and shape
 (unless (display-graphic-p)
