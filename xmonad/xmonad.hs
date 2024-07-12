@@ -12,6 +12,7 @@ import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
 import XMonad.Util.SpawnOnce
 import System.Exit
+import XMonad.Util.Run
 import XMonad.Layout.Magnifier
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Gaps
@@ -19,12 +20,10 @@ import XMonad.Layout.Spacing
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.InsertPosition (insertPosition, Focus(Newer), Position(End))
 
-
 main :: IO ()
-main =  xmonad
-     . ewmhFullscreen
-     . ewmh
-     $ myConfig
+main =  do
+	xmproc <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrc"	
+        xmonad . ewmhFullscreen . ewmh $ myConfig
 
 -----------------------------------------------------------------------------------
 -- Change border color
@@ -58,8 +57,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_k     ), windows W.swapUp    ) -- %! Swap the focused window with the previous window
 
     -- resizing the master/slave ratio
-    , ((modMask,               xK_h     ), sendMessage Shrink) -- %! Shrink the master area
-    , ((modMask,               xK_l     ), sendMessage Expand) -- %! Expand the master area
+    , ((modMask,               xK_w     ), sendMessage Shrink) -- %! Shrink the master area
+    , ((modMask,               xK_e     ), sendMessage Expand) -- %! Expand the master area
 
     -- floating layer support
     , ((modMask,               xK_t     ), withFocused $ windows . W.sink) -- %! Push window back into tiling
@@ -84,9 +83,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
     -- mod-{w,e,r} %! Switch to physical/Xinerama screens 1, 2, or 3
-    -- mod-shift-{w,e,r} %! Move client to screen 1, 2, or 3
+    -- mod-shift-{h,e,l} %! Move client to screen 1, 2, or 3
     [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+        | (key, sc) <- zip [xK_h, xK_l, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 -----------------------------------------------------------------------------------

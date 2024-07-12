@@ -51,8 +51,8 @@
         (evil-terminal-cursor-changer-activate))
 
 ;; to change cursor color use echo -ne '\033]12;deeppink\007'
-(setq evil-normal-state-cursor 'box)
-(setq evil-insert-state-cursor 'bar)
+(setq evil-normal-state-cursor '(box "deeppink"))
+(setq evil-insert-state-cursor '(bar "deeppink"))
 
 ;; Add multiple cursors
 (require 'multiple-cursors)
