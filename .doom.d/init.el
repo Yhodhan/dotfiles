@@ -110,7 +110,7 @@
 
        :os
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
-       ;;tty               ; improve the terminal Emacs experience
+       tty               ; improve the terminal Emacs experience
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -173,8 +173,8 @@
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
        (web +lsp +tree-sitter); the tubes
-       yaml                ; JSON, but readable
-       ;;zig               ; C, but simpler
+       (yaml +lsp)         ; JSON, but readable
+       (zig +lsp +tree-sitter); C, but simpler
 
        :email
        ;;(mu4e +org +gmail

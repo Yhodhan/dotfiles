@@ -40,11 +40,6 @@
 (key-chord-define evil-normal-state-map "bk" 'kill-current-buffer);
 (key-chord-define evil-normal-state-map "vv" 'basic-save-buffer);
 
-;; matching mode
-(require 'evil-matchit)
-(key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
-(key-chord-define evil-normal-state-map "md" 'evilmi-delete-items)
-
 ;; change cursor color and shape
 (unless (display-graphic-p)
         (require 'evil-terminal-cursor-changer)
@@ -69,3 +64,53 @@
 ;; C-/ undo          | C-j create new line
 ;; C-x 0 delete window | C-x 1 delete other windows
 ;; C-x 2 spawn horizontal | C-x 3 spawn vertical
+
+;; Delete the surrounding symbols of a selected area, much like helix
+(defun delete-surrounding-symbols (start end)
+  "Delete surrounding symbols of a selected region in visual mode."
+  (interactive "r")
+  (save-excursion
+    ;; Move to end and check the character after the region
+    (goto-char end)
+    (let ((end-symbol (char-after)))
+      (when (member end-symbol '(?\) ?\] ?\} ?\" ?\' ?\`))
+        (delete-char 1)))
+    ;; Move to start and check the character before the region
+    (goto-char start)
+    (let ((start-symbol (char-before)))
+      (when (member start-symbol '(?\( ?\[ ?\{ ?\" ?\' ?\`))
+        (delete-char -1)))))
+
+;; replace the surrounding area symbols with others
+(defun replace-surrounding-symbols (start end symbol)
+  "Replace surrounding symbols of a selected region with matching symbols."
+  (interactive "r\ncEnter opening symbol: ")
+  (let ((open-symbol symbol)
+        (close-symbol (pcase symbol
+                        (?\( ?\))
+                        (?\[ ?\])
+                        (?\{ ?\})
+                        (?\" ?\")
+                        (?\' ?\')
+                        (?` ?`))))
+    (save-excursion
+      ;; Replace end symbol
+      (goto-char end)
+      (let ((end-symbol (char-after)))
+        (when (member end-symbol '(?\) ?\] ?\} ?\" ?\' ?\`))
+          (delete-char 1)
+          (insert close-symbol)))
+      ;; Replace start symbol
+      (goto-char start)
+      (let ((start-symbol (char-before)))
+        (when (member start-symbol '(?\( ?\[ ?\{ ?\" ?\' ?\`))
+          (delete-char -1)
+          (insert open-symbol))))))
+
+;; matching mode
+(key-chord-define evil-visual-state-map "md" 'delete-surrounding-symbols)
+(key-chord-define evil-visual-state-map "mr" 'replace-surrounding-symbols)
+
+(require 'evil-matchit)
+(key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
+(key-chord-define evil-normal-state-map "md" 'evilmi-delete-items)
