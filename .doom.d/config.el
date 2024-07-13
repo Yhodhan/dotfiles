@@ -26,20 +26,6 @@
 ;; Avoids evil to go character backward when pressing ESP
 (setq evil-move-cursor-back nil)
 
-;; key-chord configuration inspired by helix
-(require 'key-chord)
-(key-chord-mode t)
-
-(key-chord-define evil-normal-state-map "gl" 'evil-end-of-line)
-(key-chord-define evil-normal-state-map "gh" 'evil-beginning-of-line)
-
-;; buffer control
-(key-chord-define evil-normal-state-map "gn" 'next-buffer)
-(key-chord-define evil-normal-state-map "gp" 'previous-buffer)
-(key-chord-define evil-normal-state-map "ge" 'end-of-buffer)
-(key-chord-define evil-normal-state-map "bk" 'kill-current-buffer);
-(key-chord-define evil-normal-state-map "vv" 'basic-save-buffer);
-
 ;; change cursor color and shape
 (unless (display-graphic-p)
         (require 'evil-terminal-cursor-changer)
@@ -65,7 +51,11 @@
 ;; C-x 0 delete window | C-x 1 delete other windows
 ;; C-x 2 spawn horizontal | C-x 3 spawn vertical
 
-;; Delete the surrounding symbols of a selected area, much like helix
+;; =========================
+;;   HELIX EMULATION LAYER
+;; =========================
+
+;; Delete the surrounding symbols of a selected area.
 (defun delete-surrounding-symbols (start end)
   "Delete surrounding symbols of a selected region in visual mode."
   (interactive "r")
@@ -81,7 +71,7 @@
       (when (member start-symbol '(?\( ?\[ ?\{ ?\" ?\' ?\`))
         (delete-char -1)))))
 
-;; replace the surrounding area symbols with others
+;; replace the surrounding area symbols with others.
 (defun replace-surrounding-symbols (start end symbol)
   "Replace surrounding symbols of a selected region with matching symbols."
   (interactive "r\ncEnter opening symbol: ")
@@ -107,7 +97,36 @@
           (delete-char -1)
           (insert open-symbol))))))
 
+(defun add-symbols-around-region (start end open-symbol)
+  "Add symbols around the selected region."
+  (interactive "r\nMEnter opening symbol: ")
+  (let* ((close-symbol (cond
+                        ((string= open-symbol "(") ")")
+                        ((string= open-symbol "[") "]")
+                        ((string= open-symbol "{") "}")
+                        (t (error "No matching closing symbol found")))))
+    (save-excursion
+      (goto-char end)
+      (insert close-symbol)
+      (goto-char start)
+      (insert open-symbol))))
+
+;; key-chord configuration inspired by helix
+(require 'key-chord)
+(key-chord-mode t)
+
+(key-chord-define evil-normal-state-map "gl" 'evil-end-of-line)
+(key-chord-define evil-normal-state-map "gh" 'evil-beginning-of-line)
+
+;; buffer control
+(key-chord-define evil-normal-state-map "gn" 'next-buffer)
+(key-chord-define evil-normal-state-map "gp" 'previous-buffer)
+(key-chord-define evil-normal-state-map "ge" 'end-of-buffer)
+(key-chord-define evil-normal-state-map "bk" 'kill-current-buffer);
+(key-chord-define evil-normal-state-map "vv" 'basic-save-buffer);
+
 ;; matching mode
+(key-chord-define evil-visual-state-map "ma" 'add-symbols-around-region)
 (key-chord-define evil-visual-state-map "md" 'delete-surrounding-symbols)
 (key-chord-define evil-visual-state-map "mr" 'replace-surrounding-symbols)
 
