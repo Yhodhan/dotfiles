@@ -6,7 +6,7 @@
  '(custom-safe-themes
    '("4990532659bb6a285fee01ede3dfa1b1bdf302c5c3c8de9fad9b6bc63a9252f7" default))
  '(package-selected-packages
-   '(soothe-theme cyberpunk-theme spacemacs-theme ewal-doom-themes doom-themes zoom spacious-padding alchemist multiple-cursors evil-matchit evil-terminal-cursor-changer key-chord evil-tutor-sc cybercafe-theme))
+   '(undo-tree soothe-theme cyberpunk-theme spacemacs-theme ewal-doom-themes doom-themes zoom spacious-padding alchemist multiple-cursors evil-matchit evil-terminal-cursor-changer key-chord evil-tutor-sc cybercafe-theme))
  '(spacemacs-theme-custom-colors nil)
  '(zoom-size '(0.618 . 0.618)))
 (custom-set-faces

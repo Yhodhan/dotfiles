@@ -50,4 +50,6 @@
 (package! nerd-icons)
 (package! doom-themes)
 (package! spacemacs-theme)
+(package! cyberpunk-theme)
 (package! zoom)
+(package! undo-tree)
