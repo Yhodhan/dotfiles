@@ -10,12 +10,14 @@ return {
     top = 0.5,
     bottom = 0.5,
   },
-  font_size = 22.0;
+  font_size = 20.0,
+  -- font = wezterm.font "Monaco",
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   window_decorations = "NONE",
   window_close_confirmation = "NeverPrompt",
   exit_behavior = "Close",
   exit_behavior_messaging = "None",
+  default_cursor_style = 'SteadyBar',
   keys = {
     {
       key = "v",
