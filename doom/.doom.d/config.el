@@ -1,20 +1,19 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'spacemacs-dark)
+(setq doom-theme 'sweet)
 
 ;; enable golden ratio
 (require 'zoom)
-(setq zoom-mode t)
 (custom-set-variables
  '(zoom-size '(0.618 . 0.618)))
 
 ;; denable lines truncation
-(setq truncate-lines t)
+(setq truncate-lines nil)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type nil)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -50,6 +49,14 @@
 ;; C-/ undo          | C-j create new line
 ;; C-x 0 delete window | C-x 1 delete other windows
 ;; C-x 2 spawn horizontal | C-x 3 spawn vertical
+
+;; clean history buffers
+
+(defun clean-undo-history ()
+  (interactive)
+  (setq buffer-undo-tree nil))
+
+(global-set-key (kbd "M-u") 'clean-undo-history)
 
 ;; =========================
 ;;   HELIX EMULATION LAYER
@@ -113,6 +120,26 @@
 
 ))))
 
+(defun delete-elements-between-matching-symbols ()
+  "Delete all elements between two matching symbols."
+  (interactive)
+  (save-excursion
+    (let ((open-symbol (char-after))
+          close-symbol)
+      (cond
+       ((eq open-symbol ?\() (setq close-symbol ?\)))
+       ((eq open-symbol ?\[) (setq close-symbol ?\]))
+       ((eq open-symbol ?\{) (setq close-symbol ?\}))
+       (t (error "Cursor is not on an opening symbol")))
+
+      (let ((start (point))
+            end)
+        (forward-sexp)
+        (setq end (1- (point))) ;; Adjust to exclude the closing symbol
+        (goto-char start)
+        (delete-region (1+ start) end))))) ;; Adjust to exclude the opening symbol
+
+
 ;; key-chord configuration inspired by helix
 (require 'key-chord)
 (key-chord-mode t)
@@ -124,15 +151,18 @@
 (key-chord-define evil-normal-state-map "gn" 'next-buffer)
 (key-chord-define evil-normal-state-map "gp" 'previous-buffer)
 (key-chord-define evil-normal-state-map "ge" 'end-of-buffer)
-(key-chord-define evil-normal-state-map "bk" 'kill-current-buffer);
-(key-chord-define evil-normal-state-map "vv" 'basic-save-buffer);
-(key-chord-define evil-normal-state-map "ff" 'lsp-format-buffer);
+(key-chord-define evil-normal-state-map "bk" 'kill-current-buffer)
+(key-chord-define evil-normal-state-map "vv" 'basic-save-buffer)
+(key-chord-define evil-normal-state-map "ff" 'lsp-format-buffer)
 
 ;; matching mode
 (key-chord-define evil-visual-state-map "ma" 'add-symbols-around-region)
 (key-chord-define evil-visual-state-map "md" 'delete-surrounding-symbols)
 (key-chord-define evil-visual-state-map "mr" 'replace-surrounding-symbols)
+; delete enclosed area
+(key-chord-define evil-normal-state-map "md" 'delete-elements-between-matching-symbols)
 
 (require 'evil-matchit)
 (key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
-(key-chord-define evil-normal-state-map "md" 'evilmi-delete-items)
+;erase all
+(key-chord-define evil-normal-state-map "me" 'evilmi-delete-items)

@@ -1,0 +1,10 @@
+(undo-tree-save-format-version . 1)
+"074631b8ae57ee711d502ecfc6604b508dcb03af"
+[nil nil nil nil (26271 726 546889 373000) 0 (:visualizer [0 1 0 #<marker in no buffer>])]
+([nil nil ((#("(" 0 1 (face (rainbow-delimiters-depth-1-face) fontified nil)) . -5096) (undo-tree-id164 . -1) (undo-tree-id165 . -1) (undo-tree-id166 . -1) (undo-tree-id167 . -1) (undo-tree-id168 . -1) (#(")" 0 1 (face (rainbow-delimiters-depth-1-face) fontified t)) . 5168) (undo-tree-id169 . 1) (t 26271 719 821193 43000)) nil (26271 840 166517 537000) 0 nil])
+([nil nil ((nil ws-butler-chg delete 5169 . 5170) (5168 . 5169) (nil ws-butler-chg delete 5097 . 5098) (5096 . 5097)) nil (26271 840 166513 18000) 0 nil])
+([nil nil ((#("(setq zoom-mode t)
+" 0 1 (face (rainbow-delimiters-depth-1-face) fontified t) 1 5 (face font-lock-keyword-face fontified t) 5 6 (fontified t) 6 15 (face font-lock-variable-name-face fontified t) 15 17 (fontified t) 17 18 (face (rainbow-delimiters-depth-1-face) fontified t) 18 19 (fontified t)) . 280) (undo-tree-id162 . -18) (undo-tree-id163 . -17) 297 (t 26271 719 821193 43000)) nil (26271 840 166511 445000) 0 nil])
+([nil current ((nil rear-nonsticky nil 333 . 334) (#("
+" 0 1 (ws-butler-chg chg fontified nil)) . -352) (333 . 353) 319) nil (26271 840 166502 498000) 0 nil])
+nil
