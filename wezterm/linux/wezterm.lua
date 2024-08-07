@@ -10,7 +10,7 @@ return {
     top = 0.5,
     bottom = 0.5,
   },
-  font_size = 20.0,
+  font_size = 18.0,
   -- font = wezterm.font "Monaco",
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   window_decorations = "NONE",
@@ -29,15 +29,15 @@ return {
       mods = "ALT",
       action = wezterm.action.SplitHorizontal {domain = 'CurrentPaneDomain'}
     },
-    -- {
-    --   key = "h",
-    --   mods = "SHIFT",
-    --   action = wezterm.action.ActivatePaneDirection 'Left'
-    -- },
-    -- {
-    --   key = "l",
-    --   mods = "SHIFT",
-    --   action = wezterm.action.ActivatePaneDirection 'Right'
-    -- }
+    {
+      key = "k",
+      mods = "SHIFT",
+      action = wezterm.action.ActivatePaneDirection 'Up'
+    },
+    {
+      key = "j",
+      mods = "SHIFT",
+      action = wezterm.action.ActivatePaneDirection 'Down'
+    }
   }
 }
