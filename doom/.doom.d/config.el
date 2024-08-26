@@ -130,6 +130,9 @@
        ((eq open-symbol ?\() (setq close-symbol ?\)))
        ((eq open-symbol ?\[) (setq close-symbol ?\]))
        ((eq open-symbol ?\{) (setq close-symbol ?\}))
+       ((eq open-symbol ?\<) (setq close-symbol ?\>))
+       ((eq open-symbol ?\') (setq close-symbol ?\'))
+       ((eq open-symbol ?\") (setq close-symbol ?\"))
        (t (error "Cursor is not on an opening symbol")))
 
       (let ((start (point))
@@ -163,6 +166,7 @@
 (key-chord-define evil-normal-state-map "md" 'delete-elements-between-matching-symbols)
 
 (require 'evil-matchit)
+(setq evil-matchit-mode t)
 (key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
 ;erase all
 (key-chord-define evil-normal-state-map "me" 'evilmi-delete-items)
