@@ -7,3 +7,6 @@
 (package! undo-tree)
 (package! atom-one-dark-theme)
 (package! sweet-theme)
+(package! evil-matchit)
+(package! key-chord)
+(package! all-the-icons-completion)
