@@ -2,9 +2,12 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'sweet)
+(setq doom-font (font-spec :family "Cascadia Mono" :size 25 :weight 'medium))
+(add-to-list 'default-frame-alist '(undecorated . t))
 
 ;; enable golden ratio
 (require 'zoom)
+(setq zoom-mode t)
 (custom-set-variables
  '(zoom-size '(0.618 . 0.618)))
 
@@ -166,7 +169,7 @@
 (key-chord-define evil-normal-state-map "md" 'delete-elements-between-matching-symbols)
 
 (require 'evil-matchit)
-(setq evil-matchit-mode t)
+(setq global-evil-matchit-mode t)
 (key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
 ;erase all
 (key-chord-define evil-normal-state-map "me" 'evilmi-delete-items)
