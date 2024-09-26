@@ -14,7 +14,7 @@ def create_left_prompt [] {
     let path_segment = $"($path_color)($dir)"
 
     let path = $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
-    [(ansi reset) (ansi red_bold) "⋊> ~", $path] | str join
+    [(ansi reset) (ansi red_bold) "⋊>" (ansi green_bold) " (" (ansi purple_bold) "λ" (ansi green_bold) ")" (ansi purple_bold) ".", $path] | str join
 }
 
 def create_right_prompt [] {
@@ -86,7 +86,7 @@ $env.NU_PLUGIN_DIRS = [
     ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-zoxide init nushell | save -f ~/.zoxide.nu
+zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
