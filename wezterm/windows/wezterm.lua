@@ -1,9 +1,9 @@
 local wezterm = require("wezterm")
 
 return {
-  -- default_prog = {"nu"},
+  default_prog = {"nu"},
   color_scheme = "Andromeda",
-  -- window_background_opacity = 0.8,
+  window_background_opacity = 10,
   enable_tab_bar = false,
   window_padding = {
     left = 0.5,
@@ -11,11 +11,13 @@ return {
     top = 0.5,
     bottom = 0.5,
   },
-  font_size = 22.0,
+  font = wezterm.font("Cascadia Mono", {weight="Medium", stretch="Normal", italic=false}),
+  font_size = 16.0,
   exit_behavior_messaging = "None",
   exit_behavior = "Close",
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   window_decorations = "RESIZE",
+  default_cursor_style = 'SteadyBar', 
   keys = {
     {
       key = "v",
