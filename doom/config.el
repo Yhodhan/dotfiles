@@ -1,9 +1,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'kaolin-ocean)
+(setq doom-theme 'kaolin-galaxy)
 (setq doom-font (font-spec :family "Cascadia Mono" :size 25 :weight 'medium))
-(add-to-list 'default-frame-alist '(undecorated . t))
 
 (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
 (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
@@ -28,11 +27,8 @@
   :config
   (gcmh-mode 1))
 
-
-(add-hook 'window-setup-hook 'set-background-image)
 ;; enable golden ratio
 (require 'zoom)
-(setq zoom-mode t)
 (custom-set-variables
  '(zoom-size '(0.618 . 0.618)))
 
@@ -54,10 +50,6 @@
 (setq evil-move-cursor-back nil)
 
 ;; change cursor color and shape
-(unless (display-graphic-p)
-        (require 'evil-terminal-cursor-changer)
-        (evil-terminal-cursor-changer-activate))
-
 ;; to change cursor color use echo -ne '\033]12;deeppink\007'
 (setq evil-normal-state-cursor '(box "deeppink"))
 (setq evil-insert-state-cursor '(bar "deeppink"))
@@ -194,7 +186,10 @@
 (key-chord-define evil-normal-state-map "md" 'delete-elements-between-matching-symbols)
 
 (require 'evil-matchit)
-(setq global-evil-matchit-mode t)
+(setq evil-matchit-mode t)
 (key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
 ;erase all
 (key-chord-define evil-normal-state-map "me" 'evilmi-delete-items)
+
+
+;; AI features
