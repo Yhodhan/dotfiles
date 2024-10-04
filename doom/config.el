@@ -1,10 +1,35 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'sweet)
+(setq doom-theme 'kaolin-ocean)
 (setq doom-font (font-spec :family "Cascadia Mono" :size 25 :weight 'medium))
 (add-to-list 'default-frame-alist '(undecorated . t))
 
+(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+
+;; native compilation
+(setq native-comp-speed 3)
+(setq native-comp-jit-compilation t)
+
+;; increase GC threshold during startup
+(setq gc-cons-threshold most-positive-fixnum)
+
+;; use fd for file search
+(setq projectile-generic-command "fd . --type f --color=never")
+
+;; after Emacs startup, set it to a higher but reasonable value
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 100 1024 1024))))  ;; 100MB
+
+;; Use gcmh for better GC behavior
+(use-package! gcmh
+  :config
+  (gcmh-mode 1))
+
+
+(add-hook 'window-setup-hook 'set-background-image)
 ;; enable golden ratio
 (require 'zoom)
 (setq zoom-mode t)
