@@ -853,4 +853,5 @@ alias gcm = git commit -m
 alias gpu = git push upstream
 alias grb = git rebase 
 alias ggsup = git branch --set-upstream-to=origin/(git_current_branch)
+alias emas = emacsclientw -c -F "((fullscreen . maximized))"
 
