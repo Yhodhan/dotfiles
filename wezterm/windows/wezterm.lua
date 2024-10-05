@@ -2,8 +2,8 @@ local wezterm = require("wezterm")
 
 return {
   default_prog = {"nu"},
-  color_scheme = "Andromeda",
-  window_background_opacity = 10,
+  color_scheme = "Galizur",
+  window_background_opacity = 90,
   enable_tab_bar = false,
   window_padding = {
     left = 0.5,
@@ -18,6 +18,11 @@ return {
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   window_decorations = "RESIZE",
   default_cursor_style = 'SteadyBar', 
+  colors = {
+	cursor_bg = "deeppink",
+	cursor_fg = "deeppink",
+	cursor_border = "deeppink",
+  },
   keys = {
     {
       key = "v",

@@ -1,6 +1,3 @@
-nunmap g t
-nunmap g T
-
 nmap gg gg 
 nmap fn :tabn<CR>
 nmap fp :tabp<CR>
@@ -17,3 +14,10 @@ vmap gl $
 vmap mm %
 vmap md d%
 vmap ge GG 
+
+let &t_ti .= "\e[2 q"  " cursor when vim starts
+
+let &t_SI = "\e[6 q"    " changes curor to thin line on insert
+
+let &t_EI = "\e[2 q"    " changes cursor to block on insert end
+

@@ -234,7 +234,7 @@
 
           "background": "#000000",
 
-          "foreground": "#fafafa",
+          "foreground": "#AA0000",
 
           "properties": {
 
@@ -244,7 +244,7 @@
 
           "style": "diamond",
 
-          "template": " {{ .CurrentDate | date .Format }}<#007ACC> \ue641 </>",
+          "template": " {{ .CurrentDate | date .Format }}<#FF00FF> \ue641 </>",
 
           "trailing_diamond": "\u2593\ue0c6",
 
@@ -362,9 +362,9 @@
 
     "background": "transparent",
 
-    "foreground": "#7a7a7a",
+    "foreground": "#FF1493",
 
-    "template": " ~#@\u276f "
+    "template": " ⋊> (λ)."
 
   },
 

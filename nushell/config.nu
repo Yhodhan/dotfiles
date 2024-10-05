@@ -11,13 +11,13 @@ let dark_theme = {
     separator: white
     leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
     header: green_bold
-    empty: blue
+    empty: purple 
     # Closures can be used to choose colors for specific values.
     # The value (in this case, a bool) is piped into the closure.
-    # eg) {|| if $in { 'light_cyan' } else { 'light_gray' } }
-    bool: light_cyan
+    # eg) {|| if $in { 'light_purple' } else { 'light_gray' } }
+    bool: light_purple
     int: white
-    filesize: cyan
+    filesize: green 
     duration: white
     date: purple
     range: white
@@ -34,107 +34,43 @@ let dark_theme = {
     search_result: { bg: red fg: white }
     shape_and: purple_bold
     shape_binary: purple_bold
-    shape_block: blue_bold
-    shape_bool: light_cyan
+    shape_block: purple_bold
+    shape_bool: light_purple
     shape_closure: green_bold
     shape_custom: green
-    shape_datetime: cyan_bold
-    shape_directory: cyan
-    shape_external: cyan
+    shape_datetime: purple_bold
+    shape_directory: red 
+    shape_external: red 
     shape_externalarg: green_bold
-    shape_external_resolved: light_yellow_bold
-    shape_filepath: cyan
-    shape_flag: blue_bold
+    shape_external_resolved: light_purple_bold
+    shape_filepath: red_bold 
+    shape_flag: purple_bold
     shape_float: purple_bold
     # shapes are used to change the cli syntax highlighting
     shape_garbage: { fg: white bg: red attr: b}
-    shape_globpattern: cyan_bold
+    shape_globpattern: red_bold
     shape_int: purple_bold
-    shape_internalcall: cyan_bold
-    shape_keyword: cyan_bold
-    shape_list: cyan_bold
-    shape_literal: blue
+    shape_internalcall: red_bold
+    shape_keyword: red_bold
+    shape_list: red_bold
+    shape_literal: purple 
     shape_match_pattern: green
     shape_matching_brackets: { attr: u }
-    shape_nothing: light_cyan
-    shape_operator: yellow
+    shape_nothing: light_red
+    shape_operator: purple 
     shape_or: purple_bold
     shape_pipe: purple_bold
-    shape_range: yellow_bold
-    shape_record: cyan_bold
+    shape_range: purple_bold
+    shape_record: red_bold
     shape_redirection: purple_bold
     shape_signature: green_bold
     shape_string: green
-    shape_string_interpolation: cyan_bold
-    shape_table: blue_bold
+    shape_string_interpolation: red_bold
+    shape_table: purple_bold
     shape_variable: purple
     shape_vardecl: purple
 }
 
-let light_theme = {
-    # color for nushell primitives
-    separator: dark_gray
-    leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
-    header: green_bold
-    empty: blue
-    # Closures can be used to choose colors for specific values.
-    # The value (in this case, a bool) is piped into the closure.
-    # eg) {|| if $in { 'dark_cyan' } else { 'dark_gray' } }
-    bool: dark_cyan
-    int: dark_gray
-    filesize: cyan_bold
-    duration: dark_gray
-    date: purple
-    range: dark_gray
-    float: dark_gray
-    string: dark_gray
-    nothing: dark_gray
-    binary: dark_gray
-    cell-path: dark_gray
-    row_index: green_bold
-    record: dark_gray
-    list: dark_gray
-    block: dark_gray
-    hints: dark_gray
-    search_result: { fg: white bg: red }
-    shape_and: purple_bold
-    shape_binary: purple_bold
-    shape_block: blue_bold
-    shape_bool: light_cyan
-    shape_closure: green_bold
-    shape_custom: green
-    shape_datetime: cyan_bold
-    shape_directory: cyan
-    shape_external: cyan
-    shape_externalarg: green_bold
-    shape_external_resolved: light_purple_bold
-    shape_filepath: cyan
-    shape_flag: blue_bold
-    shape_float: purple_bold
-    # shapes are used to change the cli syntax highlighting
-    shape_garbage: { fg: white bg: red attr: b}
-    shape_globpattern: cyan_bold
-    shape_int: purple_bold
-    shape_internalcall: cyan_bold
-    shape_keyword: cyan_bold
-    shape_list: cyan_bold
-    shape_literal: blue
-    shape_match_pattern: green
-    shape_matching_brackets: { attr: u }
-    shape_nothing: light_cyan
-    shape_operator: yellow
-    shape_or: purple_bold
-    shape_pipe: purple_bold
-    shape_range: yellow_bold
-    shape_record: cyan_bold
-    shape_redirection: purple_bold
-    shape_signature: green_bold
-    shape_string: green
-    shape_string_interpolation: cyan_bold
-    shape_table: blue_bold
-    shape_variable: purple
-    shape_vardecl: purple
-}
 
 # External completer example
 # let carapace_completer = {|spans|
@@ -189,7 +125,7 @@ $env.config = {
         },
         table: {
             split_line: { fg: "#404040" },
-            selected_cell: { bg: light_blue },
+            selected_cell: { bg: light_purple},
             selected_row: {},
             selected_column: {},
         },
@@ -267,7 +203,7 @@ $env.config = {
             style: {
                 text: green
                 selected_text: { attr: r }
-                description_text: yellow
+                description_text: purple 
                 match_text: { attr: u }
                 selected_match_text: { attr: ur }
             }
@@ -300,7 +236,7 @@ $env.config = {
             style: {
                 text: green
                 selected_text: { attr: r }
-                description_text: yellow
+                description_text: purple 
                 match_text: { attr: u }
                 selected_match_text: { attr: ur }
             }
@@ -316,7 +252,7 @@ $env.config = {
             style: {
                 text: green
                 selected_text: green_reverse
-                description_text: yellow
+                description_text: purple 
             }
         }
         {
@@ -334,7 +270,7 @@ $env.config = {
             style: {
                 text: green
                 selected_text: green_reverse
-                description_text: yellow
+                description_text: purple 
             }
         }
     ]
@@ -840,6 +776,7 @@ $env.config = {
     ]
 }
 
+
 alias rd  = rm -rf
 alias ga  = git add 
 alias gp  = git push
@@ -854,4 +791,6 @@ alias gpu = git push upstream
 alias grb = git rebase 
 alias ggsup = git branch --set-upstream-to=origin/(git_current_branch)
 alias emas = emacsclientw -c -F "((fullscreen . maximized))"
+
+source ~/.oh-my-posh.nu
 
