@@ -31,7 +31,7 @@ let dark_theme = {
     list: white
     block: white
     hints: dark_gray
-    search_result: { bg: red fg: white }
+    search_result: { bg: purple_bold fg: white }
     shape_and: purple_bold
     shape_binary: purple_bold
     shape_block: purple_bold
@@ -39,19 +39,19 @@ let dark_theme = {
     shape_closure: green_bold
     shape_custom: green
     shape_datetime: purple_bold
-    shape_directory: red 
-    shape_external: red 
+    shape_directory: red_bold
+    shape_external: red_bold 
     shape_externalarg: green_bold
     shape_external_resolved: light_purple_bold
-    shape_filepath: red_bold 
+    shape_filepath: purple_bold 
     shape_flag: purple_bold
     shape_float: purple_bold
     # shapes are used to change the cli syntax highlighting
     shape_garbage: { fg: white bg: red attr: b}
-    shape_globpattern: red_bold
+    shape_globpattern: purple_bold
     shape_int: purple_bold
     shape_internalcall: red_bold
-    shape_keyword: red_bold
+    shape_keyword: purple_bold
     shape_list: red_bold
     shape_literal: purple 
     shape_match_pattern: green
@@ -61,11 +61,11 @@ let dark_theme = {
     shape_or: purple_bold
     shape_pipe: purple_bold
     shape_range: purple_bold
-    shape_record: red_bold
+    shape_record: purple_bold
     shape_redirection: purple_bold
     shape_signature: green_bold
     shape_string: green
-    shape_string_interpolation: red_bold
+    shape_string_interpolation: purple_bold
     shape_table: purple_bold
     shape_variable: purple
     shape_vardecl: purple
