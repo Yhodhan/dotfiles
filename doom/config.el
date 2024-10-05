@@ -3,10 +3,16 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'kaolin-ocean)
 (setq doom-font (font-spec :family "Cascadia Mono" :size 25 :weight 'medium))
-(add-to-list 'default-frame-alist '(undecorated . t))
+;;(add-to-list 'default-frame-alist '(undecorated . t))
 
 (setq initial-frame-alist '((fullscreen . maximized)))
 (setq default-frame-alist '((fullscreen . maximized)))
+
+;; Hook to remove title bar from new frames created by emacsclient
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (set-frame-parameter frame 'undecorated t)))
+
 ;;(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
 ;;(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
@@ -14,17 +20,16 @@
 (setq native-comp-speed 3)
 (setq native-comp-jit-compilation t)
 
-;; increase GC threshold during startup
-(setq gc-cons-threshold most-positive-fixnum)
 
 ;; use fd for file search
 (setq projectile-generic-command "fd . --type f --color=never")
 
+;; increase GC threshold during startup
+(setq gc-cons-threshold most-positive-fixnum)
 ;; after Emacs startup, set it to a higher but reasonable value
 (add-hook 'emacs-startup-hook
           (lambda ()
             (setq gc-cons-threshold (* 100 1024 1024))))  ;; 100MB
-
 ;; Use gcmh for better GC behavior
 (use-package! gcmh
   :config
