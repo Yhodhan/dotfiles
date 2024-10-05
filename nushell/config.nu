@@ -22,7 +22,7 @@ let dark_theme = {
     date: purple
     range: white
     float: white
-    string: white
+    string: { fg : "#ff00ff" } 
     nothing: white
     binary: white
     cell-path: white
@@ -82,7 +82,7 @@ $env.config = {
     show_banner: true # true or false to enable or disable the welcome banner at startup
 
     ls: {
-        use_ls_colors: true # use the LS_COLORS environment variable to colorize output
+        use_ls_colors: false # use the LS_COLORS environment variable to colorize output
         clickable_links: true # enable or disable clickable links. Your terminal has to support links.
     }
 
