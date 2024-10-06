@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 
 return {
-  default_prog = {"nu"},
+  default_prog = { 'cmd.exe', '/k', 'C:\\Users\\Ad_maiorem\\.config\\wezterm\\init_vs_nu.bat' },
   color_scheme = "Galizur",
   window_background_opacity = 90,
   enable_tab_bar = false,
