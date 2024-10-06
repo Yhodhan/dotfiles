@@ -41,8 +41,8 @@ let dark_theme = {
     shape_datetime: purple_bold
     shape_directory: red_bold
     shape_external: red_bold 
-    shape_externalarg: green_bold
-    shape_external_resolved: light_purple_bold
+    shape_externalarg: purple_bold
+    shape_external_resolved: purple_bold
     shape_filepath: purple_bold 
     shape_flag: purple_bold
     shape_float: purple_bold
