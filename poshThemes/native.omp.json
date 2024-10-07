@@ -1,0 +1,128 @@
+{
+
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+
+  "blocks": [
+
+    {
+
+      "alignment": "left",
+
+      "segments": [
+
+        {
+
+          "background": "#000000",
+
+          "foreground": "#FF1493",
+
+          "leading_diamond": "\ue0c7\u2593",
+
+          "properties": {
+
+            "alpine": "\uf300",
+
+            "arch": "\uf303",
+
+            "centos": "\uf304",
+
+            "debian": "\uf306",
+
+            "elementary": "\uf309",
+
+            "fedora": "\uf30a",
+
+            "gentoo": "\uf30d",
+
+            "linux": "\ue712",
+
+            "macos": "\ue711",
+
+            "manjaro": "\uf312",
+
+            "mint": "\uf30f",
+
+            "opensuse": "\uf314",
+
+            "raspbian": "\uf315",
+
+            "ubuntu": "\uf31c",
+
+            "windows": "\uf306"
+
+          },
+
+          "style": "diamond",
+
+          "template": " {{ if .WSL }}\ue712 on {{ end }}{{ .Icon }}<#7a7a7a> \ue0b1</>",
+
+          "type": "os"
+
+        },
+
+        {
+
+          "background": "#000000",
+
+          "foreground": "#00ff00",
+
+          "style": "diamond",
+
+          "template": " <#77f5d6> Garuda</><#7a7a7a>\uf1fa</><#2EEFBF>Aegis</><#7a7a7a> \ue0b1</>",
+
+          "type": "session"
+
+        },
+
+        {
+
+          "background": "#000000",
+
+          "foreground": "#FF00FF",
+
+          "style": "diamond",
+
+          "template": "<#FF00FF> {{ .Path }} ",
+
+          "type": "path"
+
+        }
+      ],
+
+      "type": "prompt"
+
+    },
+
+    {
+
+      "alignment": "left",
+
+      "newline": false,
+
+      "segments": [
+
+        {
+
+          "foreground": "#ff1493",
+
+          "style": "plain",
+
+          "template": " ⋊> (λ).",
+
+          "type": "text"
+
+        }
+
+      ],
+
+      "type": "prompt"
+
+    }
+
+  ],
+
+  "final_space": true,
+
+  "version": 2
+
+}
