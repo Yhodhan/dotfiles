@@ -16,8 +16,6 @@
 
           "foreground": "#FF1493",
 
-          "leading_diamond": "\ue0c7\u2593",
-
           "properties": {
 
             "alpine": "\uf300",
@@ -68,7 +66,7 @@
 
           "style": "diamond",
 
-          "template": " <#77f5d6> Garuda</><#7a7a7a>\uf1fa</><#2EEFBF>Aegis</><#7a7a7a> \ue0b1</>",
+          "template": " <#2EEFBF> Garuda</><#888888>(x)</><#2EEFBF>Aegis</><#7a7a7a> \ue0b1</>",
 
           "type": "session"
 
