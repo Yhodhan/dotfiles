@@ -1,6 +1,7 @@
 ;;; cyberpunk-theme.el --- Cyberpunk Color Theme
 
 ;; Copyright 2012-2020, Nicholas M. Van Horn
+;; modification by Zykhadas
 
 ;; Author: Nicholas M. Van Horn <nvanhorn@protonmail.com>
 ;; Homepage: https://github.com/n3mo/cyberpunk-theme.el
