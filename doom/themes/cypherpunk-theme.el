@@ -78,7 +78,7 @@
       (cyberpunk-green+4 "#bfebbf")
       (cyberpunk-cyan "#93e0e3")
       (cyberpunk-blue+1 "#94bff3")
-      (cyberpunk-violet "#8A2BE2")    ;; violet 
+      (cyberpunk-violet "#ff1493")    ;; violet 
       (cyberpunk-blue "#8A2BE2")    ;; blue
       (cyberpunk-blue-1 "#8a2be2")  ;; medium slate blue
       (cyberpunk-blue-2 "#8a2be2")  ;; slate blue
@@ -139,7 +139,7 @@
    `(compilation-line-face ((,class (:foreground ,cyberpunk-yellow))))
    `(compilation-line-number ((,class (:foreground ,cyberpunk-yellow))))
    `(compilation-message-face ((,class (:foreground ,cyberpunk-blue))))
-   `(compilation-warning-face ((,class (:foreground ,cyberpunk-yellow-1 :weight bold :underline t))))
+   `(compilation-warning-face ((,class (:foreground ,cyberpunk-red :weight bold :underline t))))
 
    ;;; grep
    `(grep-context-face ((,class (:foreground ,cyberpunk-black :background ,cyberpunk-pink-1))))
@@ -187,13 +187,13 @@
    ;; `(font-lock-doc-face ((,class (:foreground ,cyberpunk-green+1))))
    `(font-lock-doc-face ((,class (:foreground ,cyberpunk-yellow-1))))
    `(font-lock-function-name-face ((,class (:foreground ,cyberpunk-pink-1))))
-   `(font-lock-keyword-face ((,class (:foreground ,cyberpunk-gray))))
+   `(font-lock-keyword-face ((,class (:foreground ,cyberpunk-green+3))))
    ;; `(font-lock-negation-char-face ((,class (:foreground ,cyberpunk-fg))))
    `(font-lock-preprocessor-face ((,class (:foreground ,cyberpunk-gray-3))))
    `(font-lock-string-face ((,class (:foreground ,cyberpunk-green+1))))
    `(font-lock-type-face ((,class (:foreground ,cyberpunk-green+3))))
    `(font-lock-variable-name-face ((,class (:foreground ,cyberpunk-pink))))
-   `(font-lock-warning-face ((,class (:foreground ,cyberpunk-gray))))
+   `(font-lock-warning-face ((,class (:foreground ,cyberpunk-red))))
    `(font-lock-reference-face ((,class (:foreground ,cyberpunk-gray))))
    `(font-lock-regexp-grouping-backslash ((,class (:foreground ,cyberpunk-yellow-4))))
    `(font-lock-regexp-grouping-construct ((,class (:foreground ,cyberpunk-red))))
@@ -425,7 +425,7 @@
    `(ido-indicator ((,class (:foreground ,cyberpunk-black :background ,cyberpunk-pink-1))))
 
    ;; js2-mode
-   `(js2-warning-face ((,class (:underline ,cyberpunk-orange))))
+   `(js2-warning-face ((,class (:underline ,cyberpunk-red))))
    `(js2-error-face ((,class (:foreground ,cyberpunk-red :weight bold))))
    `(js2-jsdoc-tag-face ((,class (:foreground ,cyberpunk-green-1))))
    `(js2-jsdoc-type-face ((,class (:foreground ,cyberpunk-green+2))))
