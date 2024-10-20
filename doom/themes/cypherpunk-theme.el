@@ -93,7 +93,7 @@
                                 (not (display-graphic-p))
                                 (eq system-type 'darwin))
                            "ARGBBB000000"
-                         "#282c34"))
+                         "#282a36"))
       (cyberpunk-black-2 "#0C1021")
       (cyberpunk-black-3 "#0A0A0A")
       (cyberpunk-gray "#d3d3d3")
@@ -688,9 +688,9 @@
    `(racket-selfeval-face ((t (:inherit font-lock-type-face))))
 
    ;; rainbow-delimiters
-   `(rainbow-delimiters-depth-1-face ((,class (:foreground ,cyberpunk-red-1))))
-   `(rainbow-delimiters-depth-2-face ((,class (:foreground ,cyberpunk-green-2))))
-   `(rainbow-delimiters-depth-3-face ((,class (:foreground ,cyberpunk-pink-1))))
+   `(rainbow-delimiters-depth-1-face ((,class (:foreground ,cyberpunk-gray-4))))
+   `(rainbow-delimiters-depth-2-face ((,class (:foreground ,cyberpunk-gray-3))))
+   `(rainbow-delimiters-depth-3-face ((,class (:foreground ,cyberpunk-gray-2))))
    `(rainbow-delimiters-depth-4-face ((,class (:foreground ,cyberpunk-yellow))))
    `(rainbow-delimiters-depth-5-face ((,class (:foreground ,cyberpunk-green))))
    `(rainbow-delimiters-depth-6-face ((,class (:foreground ,cyberpunk-blue-3))))
@@ -722,10 +722,10 @@
 
    ;; show-paren
    `(show-paren-mismatch ((,class (:foreground ,cyberpunk-red-3 :background ,cyberpunk-black))))
-   `(show-paren-match ((,class (:foreground ,cyberpunk-black :background ,cyberpunk-pink-1))))
+   `(show-paren-match ((,class (:foreground ,cyberpunk-black :background ,cyberpunk-gray-4))))
 
    `(naeu-green-face ((,class (:foreground ,cyberpunk-green :background ,cyberpunk-black))))
-   `(naeu-pink-face ((,class (:foreground ,cyberpunk-pink-1 :background ,cyberpunk-black))))
+   `(naeu-pink-face ((,class (:foreground ,cyberpunk-gray-2 :background ,cyberpunk-black))))
    `(naeu-blue-face ((,class (:foreground ,cyberpunk-blue-1 :background ,cyberpunk-black))))
    `(naeu-orange-face ((,class (:foreground ,cyberpunk-yellow-1 :background ,cyberpunk-black))))
    `(naeu-red-face ((,class (:foreground ,cyberpunk-orange :background ,cyberpunk-black))))
