@@ -1,7 +1,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'kaolin-ocean)
+(setq doom-theme 'cyberpunk)
 (setq doom-font (font-spec :family "Cascadia Mono" :size 25 :weight 'medium))
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
 
@@ -13,13 +13,9 @@
           (lambda (frame)
             (set-frame-parameter frame 'undecorated t)))
 
-;;(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-;;(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
-
 ;; native compilation
 (setq native-comp-speed 3)
 (setq native-comp-jit-compilation t)
-
 
 ;; use fd for file search
 (setq projectile-generic-command "fd . --type f --color=never")
@@ -41,12 +37,9 @@
 (custom-set-variables
  '(zoom-size '(0.618 . 0.618)))
 
-;; denable lines truncation
-(setq truncate-lines nil)
-
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type nil)
+(setq display-line-numbers-type 'relative)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -62,6 +55,8 @@
 (unless (display-graphic-p)
         (require 'evil-terminal-cursor-changer)
         (evil-terminal-cursor-changer-activate))
+
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
 
 ;; to change cursor color use echo -ne '\033]12;deeppink\007'
 (setq evil-normal-state-cursor '(box "deeppink"))
@@ -149,9 +144,7 @@
       (goto-char end)
       (insert close-symbol)
       (goto-char start)
-      (insert open-symbol
-
-))))
+      (insert open-symbol))))
 
 (defun delete-elements-between-matching-symbols ()
   "Delete all elements between two matching symbols."
