@@ -93,17 +93,18 @@
                                 (not (display-graphic-p))
                                 (eq system-type 'darwin))
                            "ARGBBB000000"
-                         "#282a36"))
+                         "#1d2837"))
       (cyberpunk-black-2 "#0C1021")
       (cyberpunk-black-3 "#0A0A0A")
       (cyberpunk-gray "#d3d3d3")
       (cyberpunk-gray-2 "#8B8989")
       (cyberpunk-gray-3 "#919191")
       (cyberpunk-gray-4 "#999999")
-      (cyberpunk-gray-5 "#333333")
+      (cyberpunk-gray-5 "#1d2837")
       (cyberpunk-gray-6 "#1A1A1A")
       (cyberpunk-gray-7 "#4D4D4D")
       (cyberpunk-gray-8 "#262626")
+      (cyberpunk-gray-9 "#000000")
       (cyberpunk-white "#ffffff")
       (cyberpunk-white-2 "#F8F8F8")
       (cyberpunk-white-3 "#fffafa"))
@@ -126,7 +127,7 @@
    `(header-line ((,class (:foreground ,cyberpunk-yellow
                                        :background ,cyberpunk-bg-1
                                        :box (:line-width -1 :style released-button)))))
-   `(highlight ((,class (:background ,cyberpunk-gray-5))))
+   `(highlight ((,class (:background ,cyberpunk-gray-9))))
 
    ;;; compilation
    `(compilation-column-face ((,class (:foreground ,cyberpunk-yellow))))
