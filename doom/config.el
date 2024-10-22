@@ -1,6 +1,6 @@
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
+;; -----------------------------------------------------------------------------------------
+;;                              Themes and decoration
+;; -----------------------------------------------------------------------------------------
 (setq doom-theme 'cyberpunk)
 (setq doom-font (font-spec :family "Cascadia Mono" :size 25 :weight 'medium))
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
@@ -13,6 +13,12 @@
           (lambda (frame)
             (set-frame-parameter frame 'undecorated t)))
 
+;; remove menu bar
+(setq menu-bar-mode nil)
+
+;; -----------------------------------------------------------------------------------------
+;;                              Optimization
+;; -----------------------------------------------------------------------------------------
 ;; native compilation
 (setq native-comp-speed 3)
 (setq native-comp-jit-compilation t)
@@ -31,20 +37,56 @@
   :config
   (gcmh-mode 1))
 
+(setq-default mode-line-format
+              (remove '(:eval (when (buffer-modified-p) " !")) mode-line-format))
+;; -----------------------------------------------------------------------------------------
+;;                              Windows
+;; -----------------------------------------------------------------------------------------
 ;; enable golden ratio
 (require 'zoom)
 (setq zoom-mode t)
 (custom-set-variables
  '(zoom-size '(0.618 . 0.618)))
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
+;; -----------------------------------------------------------------------------------------
+;;                          Manage numbering
+;; -----------------------------------------------------------------------------------------
+
+(defun my-toggle-line-numbers ()
+  "Toggle relative line numbers for the active window"
+  (if (eq (selected-window) (get-buffer-window))
+      (display-line-numbers-mode 1)  ;; Enable line numbers in the active window
+    (display-line-numbers-mode -1))) ;; Disable line numbers in inactive windows
+
+
+(defun my-refresh-line-numbers ()
+  "Refresh line numbers in all visible windows."
+  (walk-windows
+   (lambda (window)
+     (with-selected-window window
+       (my-toggle-line-numbers)))))
+
+;; Hook to ensure line numbers update when switching windows
+(add-hook 'buffer-list-update-hook #'my-refresh-line-numbers)
+(add-hook 'window-configuration-change-hook #'my-refresh-line-numbers)
+
+;; Update line numbers when the selected window changes
+(add-hook 'post-command-hook #'my-refresh-line-numbers)
+
+;; Set relative line numbers as default for active windows
+(setq display-line-numbers-type 'nil)
+
+;; -----------------------------------------------------------------------------------------
+;;                                 ORG Mode
+;; -----------------------------------------------------------------------------------------
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
+;; -----------------------------------------------------------------------------------------
+;;                               Cursor
+;; -----------------------------------------------------------------------------------------
 ;; Avoids emacs to show the exit prompt
 (setq confirm-kill-emacs nil)
 
@@ -64,18 +106,6 @@
 (setq blink-cursor-mode t)
 (setq blink-cursor-interval 0.6)
 
-(defface my-comment-part-face
-  '((t :background "#d3d3d3"   ;; Customize background color after the comment starts
-       :foreground "#5c6370")) ;; Darken text color after the comment starts
-  "Face for highlighting the part of the line after //.")
-
-(defun highlight-comment-part ()
-  "Highlight the part of the line after //."
-  ;; This regex matches everything after //
-  (highlight-lines-matching-regexp "//.*$" 'my-comment-part-face))
-
-(add-hook 'prog-mode-hook 'highlight-comment-part)
-
 ;; Add multiple cursors
 (require 'multiple-cursors)
 ;; multiple-cursors packages uses vanilla emacs keybindins to move arround
@@ -91,6 +121,22 @@
 ;; C-/ undo          | C-j create new line
 ;; C-x 0 delete window | C-x 1 delete other windows
 ;; C-x 2 spawn horizontal | C-x 3 spawn vertical
+
+;; -----------------------------------------------------------------------------------------
+;;                            Comments behavior
+;; -----------------------------------------------------------------------------------------
+(defface my-comment-part-face
+  '((t :background "#d3d3d3"   ;; Customize background color after the comment starts
+       :foreground "#5c6370")) ;; Darken text color after the comment starts
+  "Face for highlighting the part of the line after //.")
+
+(defun highlight-comment-part ()
+  "Highlight the part of the line after //."
+  ;; This regex matches everything after //
+  (highlight-lines-matching-regexp "//.*$" 'my-comment-part-face))
+
+(add-hook 'prog-mode-hook 'highlight-comment-part)
+;; -----------------------------------------------------------------------------------------
 
 ;; clean history buffers
 
@@ -197,8 +243,8 @@
 (key-chord-define evil-normal-state-map "bk" 'kill-current-buffer)
 (key-chord-define evil-normal-state-map "vv" 'basic-save-buffer)
 (key-chord-define evil-normal-state-map "ff" 'lsp-format-buffer)
+(key-chord-define evil-normal-state-map "cc" 'avy-goto-line)
 
-;; matching mode
 (key-chord-define evil-visual-state-map "ma" 'add-symbols-around-region)
 (key-chord-define evil-visual-state-map "md" 'delete-surrounding-symbols)
 (key-chord-define evil-visual-state-map "mr" 'replace-surrounding-symbols)
@@ -211,6 +257,9 @@
 ;erase all
 (key-chord-define evil-normal-state-map "me" 'evilmi-delete-items)
 
+;; -----------------------------------------------------------------------------------------
+;;                                LSP
+;; -----------------------------------------------------------------------------------------
 ;; configuration of the lsp
 (after! lsp-clangd
   (setq lsp-clients-clangd-args
