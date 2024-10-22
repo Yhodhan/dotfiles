@@ -59,8 +59,22 @@
 (remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
 
 ;; to change cursor color use echo -ne '\033]12;deeppink\007'
-(setq evil-normal-state-cursor '(box "deeppink"))
-(setq evil-insert-state-cursor '(bar "deeppink"))
+;;(setq evil-normal-state-cursor '(box "deeppink"))
+;;(setq evil-insert-state-cursor '(bar "deeppink"))
+(setq blink-cursor-mode t)
+(setq blink-cursor-interval 0.6)
+
+(defface my-comment-part-face
+  '((t :background "#d3d3d3"   ;; Customize background color after the comment starts
+       :foreground "#5c6370")) ;; Darken text color after the comment starts
+  "Face for highlighting the part of the line after //.")
+
+(defun highlight-comment-part ()
+  "Highlight the part of the line after //."
+  ;; This regex matches everything after //
+  (highlight-lines-matching-regexp "//.*$" 'my-comment-part-face))
+
+(add-hook 'prog-mode-hook 'highlight-comment-part)
 
 ;; Add multiple cursors
 (require 'multiple-cursors)
