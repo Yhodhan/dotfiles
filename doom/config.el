@@ -210,3 +210,12 @@
 (key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
 ;erase all
 (key-chord-define evil-normal-state-map "me" 'evilmi-delete-items)
+
+;; configuration of the lsp
+(after! lsp-clangd
+  (setq lsp-clients-clangd-args
+        '("--clang-tidy"
+          "--completion-style=bundled"
+          "--header-insertion=iwyu"
+          "--header-insertion-decorators"
+          "--fallback-style=gnu")))  ;; Set your preferred fallback style here
