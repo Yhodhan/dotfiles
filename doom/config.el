@@ -13,9 +13,6 @@
           (lambda (frame)
             (set-frame-parameter frame 'undecorated t)))
 
-;; remove menu bar
-(setq menu-bar-mode nil)
-
 ;; -----------------------------------------------------------------------------------------
 ;;                              Optimization
 ;; -----------------------------------------------------------------------------------------
@@ -35,43 +32,22 @@
 ;; Use gcmh for better GC behavior
 (use-package! gcmh
   :config
-  (gcmh-mode 1))
+  (setq gcmh-mode 1))
 
-(setq-default mode-line-format
-              (remove '(:eval (when (buffer-modified-p) " !")) mode-line-format))
 ;; -----------------------------------------------------------------------------------------
 ;;                              Windows
 ;; -----------------------------------------------------------------------------------------
 ;; enable golden ratio
 (require 'zoom)
-(setq zoom-mode t)
 (custom-set-variables
  '(zoom-size '(0.618 . 0.618)))
 
+(require 'ace-window)
+(global-set-key (kbd "M-o") 'ace-window)
+
 ;; -----------------------------------------------------------------------------------------
-;;                          Manage numbering
+;;                          Numbering
 ;; -----------------------------------------------------------------------------------------
-
-(defun my-toggle-line-numbers ()
-  "Toggle relative line numbers for the active window"
-  (if (eq (selected-window) (get-buffer-window))
-      (display-line-numbers-mode 1)  ;; Enable line numbers in the active window
-    (display-line-numbers-mode -1))) ;; Disable line numbers in inactive windows
-
-
-(defun my-refresh-line-numbers ()
-  "Refresh line numbers in all visible windows."
-  (walk-windows
-   (lambda (window)
-     (with-selected-window window
-       (my-toggle-line-numbers)))))
-
-;; Hook to ensure line numbers update when switching windows
-(add-hook 'buffer-list-update-hook #'my-refresh-line-numbers)
-(add-hook 'window-configuration-change-hook #'my-refresh-line-numbers)
-
-;; Update line numbers when the selected window changes
-(add-hook 'post-command-hook #'my-refresh-line-numbers)
 
 ;; Set relative line numbers as default for active windows
 (setq display-line-numbers-type 'nil)
@@ -125,26 +101,26 @@
 ;; -----------------------------------------------------------------------------------------
 ;;                            Comments behavior
 ;; -----------------------------------------------------------------------------------------
-(defface my-comment-part-face
-  '((t :background "#d3d3d3"   ;; Customize background color after the comment starts
-       :foreground "#5c6370")) ;; Darken text color after the comment starts
-  "Face for highlighting the part of the line after //.")
 
-(defun highlight-comment-part ()
-  "Highlight the part of the line after //."
-  ;; This regex matches everything after //
-  (highlight-lines-matching-regexp "//.*$" 'my-comment-part-face))
 
-(add-hook 'prog-mode-hook 'highlight-comment-part)
-;; -----------------------------------------------------------------------------------------
+(defface custom-comment-face
+  '((t :foreground "#000000"   ;; Set your custom foreground color (text color)
+       :background "#d3d3d3"   ;; Set your custom background color
+       ))
+  "Face for highlighting comments after // or /*."
+  :group 'custom-faces)
 
-;; clean history buffers
+(defun highlight-comments ()
+  "Highlight everything after // or /* in comments with a custom face."
+  (font-lock-add-keywords nil
+   '(("//.*" 0 'custom-comment-face t)          ;; Single-line comments after //
+     ("/\\*\\(.\\|\n\\)*?\\*/" 0 'custom-comment-face t))) ;; Multi-line comments /* ... */
+  (font-lock-flush))
+;; Hook the function to C/C++ modes, or any other mode where you want it:
+;;(add-hook 'c-mode-hook 'my-highlight-custom-comments)
+;;(add-hook 'c++-mode-hook 'my-highlight-custom-comments)
 
-(defun clean-undo-history ()
-  (interactive)
-  (setq buffer-undo-tree nil))
-
-(global-set-key (kbd "M-u") 'clean-undo-history)
+(add-hook 'prog-mode-hook 'highlight-comments)
 
 ;; =========================
 ;;   HELIX EMULATION LAYER
@@ -243,7 +219,6 @@
 (key-chord-define evil-normal-state-map "bk" 'kill-current-buffer)
 (key-chord-define evil-normal-state-map "vv" 'basic-save-buffer)
 (key-chord-define evil-normal-state-map "ff" 'lsp-format-buffer)
-(key-chord-define evil-normal-state-map "cc" 'avy-goto-line)
 
 (key-chord-define evil-visual-state-map "ma" 'add-symbols-around-region)
 (key-chord-define evil-visual-state-map "md" 'delete-surrounding-symbols)
@@ -268,3 +243,13 @@
           "--header-insertion=iwyu"
           "--header-insertion-decorators"
           "--fallback-style=gnu")))  ;; Set your preferred fallback style here
+
+;; -----------------------------------------------------------------------------------------
+;;                                Avy
+;; -----------------------------------------------------------------------------------------
+(use-package! avy
+  :bind
+  (:map isearch-mode-map ("C-j" . avy-isearch)))
+
+(global-set-key (kbd "M-p") 'evil-avy-goto-char)
+(key-chord-define evil-normal-state-map "cc" 'avy-goto-line)
