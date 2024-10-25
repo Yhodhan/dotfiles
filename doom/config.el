@@ -104,8 +104,8 @@
 
 
 (defface custom-comment-face
-  '((t :foreground "#000000"   ;; Set your custom foreground color (text color)
-       :background "#d3d3d3"   ;; Set your custom background color
+  '((t :foreground "#444444"   ;; Set your custom foreground color (text color)
+       :background "#a3a3a3"   ;; Set your custom background color
        ))
   "Face for highlighting comments after // or /*."
   :group 'custom-faces)

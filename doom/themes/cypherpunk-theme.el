@@ -51,7 +51,7 @@
       (cyberpunk-bg+2 "#5f5f5f")
       (cyberpunk-bg+3 "#6f6f6f")
       (cyberpunk-red+1 "#dca3a3")
-      (cyberpunk-red "#ff0000")
+      (cyberpunk-red "#dd0000")
       (cyberpunk-red-1 "#8b0000")
       (cyberpunk-red-2 "#8b0000")
       (cyberpunk-red-3 "#9c6363")
@@ -94,18 +94,17 @@
                                 (eq system-type 'darwin))
                            "ARGBBB000000"
                          "#262a33"))
-;;                         "#000000"))
       (cyberpunk-black-2 "#0C1021")
       (cyberpunk-black-3 "#0A0A0A")
       (cyberpunk-gray "#d3d3d3")
       (cyberpunk-gray-2 "#8B8989")
       (cyberpunk-gray-3 "#919191")
       (cyberpunk-gray-4 "#999999")
-      (cyberpunk-gray-5 "#262a33")
+      (cyberpunk-gray-5 "#000000")
       (cyberpunk-gray-6 "#1A1A1A")
       (cyberpunk-gray-7 "#4D4D4D")
       (cyberpunk-gray-8 "#262626")
-      (cyberpunk-gray-9 "#d3d3d3")
+      (cyberpunk-gray-9 "#000000")
       (cyberpunk-white "#ffffff")
       (cyberpunk-white-2 "#F8F8F8")
       (cyberpunk-white-3 "#fffafa"))
@@ -128,7 +127,7 @@
    `(header-line ((,class (:foreground ,cyberpunk-yellow
                                        :background ,cyberpunk-bg-1
                                        :box (:line-width -1 :style released-button)))))
-   `(highlight ((,class (:background,cyberpunk-gray-9 :foreground,"#000000"))))
+   `(highlight ((,class (:background ,cyberpunk-gray-9))))
 
    ;;; compilation
    `(compilation-column-face ((,class (:foreground ,cyberpunk-yellow))))
@@ -309,6 +308,11 @@
    ;; flymake
    `(flymake-errline ((,class (:foreground ,cyberpunk-red-1 :weight bold :underline t))))
    `(flymake-warnline ((,class (:foreground ,cyberpunk-gray :weight bold :underline t))))
+
+   ;; flycheck
+   `(flycheck-error((,class (:foreground ,cyberpunk-red :weight bold :underline t))))
+   `(flycheck-info((,class (:foreground ,cyberpunk-red :weight bold :underline t))))
+   `(flycheck-warning((,class (:foreground ,cyberpunk-red :weight bold :underline t))))
 
    ;; flyspell
    `(flyspell-duplicate ((,class (:foreground ,cyberpunk-yellow-1 :weight bold :underline t))))
