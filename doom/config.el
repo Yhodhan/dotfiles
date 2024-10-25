@@ -2,7 +2,7 @@
 ;;                              Themes and decoration
 ;; -----------------------------------------------------------------------------------------
 (setq doom-theme 'cyberpunk)
-(setq doom-font (font-spec :family "Cascadia Mono" :size 25 :weight 'medium))
+(setq doom-font (font-spec :family "Cascadia Mono" :size 22 :weight 'medium))
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
 
 (setq initial-frame-alist '((fullscreen . maximized)))
@@ -12,7 +12,7 @@
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (set-frame-parameter frame 'undecorated t)))
-
+(scroll-bar-mode -1)
 ;; -----------------------------------------------------------------------------------------
 ;;                              Optimization
 ;; -----------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@
 ;; Use gcmh for better GC behavior
 (use-package! gcmh
   :config
-  (setq gcmh-mode 1))
+  (gcmh-mode 1))
 
 ;; -----------------------------------------------------------------------------------------
 ;;                              Windows
@@ -79,7 +79,7 @@
 ;; to change cursor color use echo -ne '\033]12;deeppink\007'
 ;;(setq evil-normal-state-cursor '(box "deeppink"))
 ;;(setq evil-insert-state-cursor '(bar "deeppink"))
-(setq blink-cursor-mode t)
+(blink-cursor-mode t)
 (setq blink-cursor-interval 0.6)
 
 ;; Add multiple cursors
@@ -228,7 +228,7 @@
 (key-chord-define evil-normal-state-map "md" 'delete-elements-between-matching-symbols)
 
 (require 'evil-matchit)
-(setq global-evil-matchit-mode t)
+(global-evil-matchit-mode t)
 (key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
 ;erase all
 (key-chord-define evil-normal-state-map "me" 'evilmi-delete-items)

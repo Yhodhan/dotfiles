@@ -46,7 +46,7 @@
       (cyberpunk-fg "#dcdccc")
       (cyberpunk-bg-1 "#D3D3D3")
       (cyberpunk-bg-05 "#383838")
-      (cyberpunk-bg "#000000")
+      (cyberpunk-bg "#262a33")
       (cyberpunk-bg+1 "#4f4f4f")
       (cyberpunk-bg+2 "#5f5f5f")
       (cyberpunk-bg+3 "#6f6f6f")
