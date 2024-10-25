@@ -114,6 +114,7 @@
   "Highlight everything after // or /* in comments with a custom face."
   (font-lock-add-keywords nil
    '(("//.*" 0 'custom-comment-face t)          ;; Single-line comments after //
+     ("#.*" 0 'custom-comment-face t)
      ("/\\*\\(.\\|\n\\)*?\\*/" 0 'custom-comment-face t))) ;; Multi-line comments /* ... */
   (font-lock-flush))
 ;; Hook the function to C/C++ modes, or any other mode where you want it:
@@ -242,7 +243,7 @@
           "--completion-style=bundled"
           "--header-insertion=iwyu"
           "--header-insertion-decorators"
-          "--fallback-style=gnu")))  ;; Set your preferred fallback style here
+          "--fallback-style=gnu")))
 
 ;; -----------------------------------------------------------------------------------------
 ;;                                Avy

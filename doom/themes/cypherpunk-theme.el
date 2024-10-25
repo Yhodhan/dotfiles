@@ -100,11 +100,11 @@
       (cyberpunk-gray-2 "#8B8989")
       (cyberpunk-gray-3 "#919191")
       (cyberpunk-gray-4 "#999999")
-      (cyberpunk-gray-5 "#000000")
+      (cyberpunk-gray-5 "#262a33")
       (cyberpunk-gray-6 "#1A1A1A")
       (cyberpunk-gray-7 "#4D4D4D")
       (cyberpunk-gray-8 "#262626")
-      (cyberpunk-gray-9 "#000000")
+      (cyberpunk-gray-9 "#a3a3a3")
       (cyberpunk-white "#ffffff")
       (cyberpunk-white-2 "#F8F8F8")
       (cyberpunk-white-3 "#fffafa"))
@@ -127,7 +127,7 @@
    `(header-line ((,class (:foreground ,cyberpunk-yellow
                                        :background ,cyberpunk-bg-1
                                        :box (:line-width -1 :style released-button)))))
-   `(highlight ((,class (:background ,cyberpunk-gray-9))))
+   `(highlight ((,class (:background ,cyberpunk-gray-9 :foreground "#000000"))))
 
    ;;; compilation
    `(compilation-column-face ((,class (:foreground ,cyberpunk-yellow))))
