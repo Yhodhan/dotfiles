@@ -46,7 +46,7 @@
       (cyberpunk-fg "#dcdccc")
       (cyberpunk-bg-1 "#D3D3D3")
       (cyberpunk-bg-05 "#383838")
-      (cyberpunk-bg "#262a33")
+      (cyberpunk-bg "#000000")
       (cyberpunk-bg+1 "#4f4f4f")
       (cyberpunk-bg+2 "#5f5f5f")
       (cyberpunk-bg+3 "#6f6f6f")
@@ -78,7 +78,7 @@
       (cyberpunk-green+4 "#bfebbf")
       (cyberpunk-cyan "#93e0e3")
       (cyberpunk-blue+1 "#94bff3")
-      (cyberpunk-violet "#ff1493")    ;; violet 
+      (cyberpunk-violet "#7f00ff")    ;; violet 
       (cyberpunk-blue "#8A2BE2")    ;; blue
       (cyberpunk-blue-1 "#8a2be2")  ;; medium slate blue
       (cyberpunk-blue-2 "#8a2be2")  ;; slate blue
@@ -89,11 +89,12 @@
       (cyberpunk-blue-7 "#00ffff")
       (cyberpunk-blue-8 "#4F94CD")
       (cyberpunk-magenta "#dc8cc3")
-      (cyberpunk-black (if (and cyberpunk-transparent-background
-                                (not (display-graphic-p))
-                                (eq system-type 'darwin))
-                           "ARGBBB000000"
-                         "#262a33"))
+;;      (cyberpunk-black (if (and cyberpunk-transparent-background
+;;                                (not (display-graphic-p))
+;;                                (eq system-type 'darwin))
+;;                           "ARGBBB000000"
+;;                         "#262a33"))
+      (cyberpunk-black "#262a33")
       (cyberpunk-black-2 "#0C1021")
       (cyberpunk-black-3 "#0A0A0A")
       (cyberpunk-gray "#d3d3d3")
@@ -123,7 +124,7 @@
    `(default ((,class (:foreground ,cyberpunk-gray :background ,cyberpunk-black))))
    `(cursor ((,class (:background ,cyberpunk-fg))))
    `(escape-glyph-face ((,class (:foreground ,cyberpunk-red))))
-   `(fringe ((,class (:foreground ,cyberpunk-fg :background ,cyberpunk-bg-1))))
+   `(fringe ((,class (:foreground ,cyberpunk-black :background ,cyberpunk-black))))
    `(header-line ((,class (:foreground ,cyberpunk-yellow
                                        :background ,cyberpunk-bg-1
                                        :box (:line-width -1 :style released-button)))))
@@ -167,14 +168,14 @@
    `(menu ((,class (:foreground ,cyberpunk-fg :background ,cyberpunk-bg))))
    `(minibuffer-prompt ((,class (:foreground ,cyberpunk-green+1 :background ,cyberpunk-black))))
    `(mode-line
-     ((,class (:foreground ,cyberpunk-violet
+     ((,class (:foreground ,cyberpunk-pink-1
                            :background ,cyberpunk-gray-5
-                           :box (:line-width -1 :color ,cyberpunk-violet)))))
+                           :box (:line-width -1 :color ,cyberpunk-pink-1)))))
    ;; `(mode-line-buffer-id ((,class (:foreground ,cyberpunk-yellow :weight bold))))
    `(mode-line-inactive
      ((,class (:foreground ,cyberpunk-gray-7
                            :background ,cyberpunk-gray-6
-                           :box (:line-width -1 :color ,cyberpunk-violet)))))
+                           :box (:line-width -1 :color ,cyberpunk-pink-1)))))
    `(region ((,class (:background ,cyberpunk-red-5))))
    `(secondary-selection ((,class (:background ,cyberpunk-bg+2))))
    `(trailing-whitespace ((,class (:background ,cyberpunk-red))))
@@ -186,7 +187,7 @@
    ;; `(font-lock-comment-delimiter-face ((,class (:foreground ,cyberpunk-green))))
    `(font-lock-constant-face ((,class (:foreground ,cyberpunk-blue-6))))
    ;; `(font-lock-doc-face ((,class (:foreground ,cyberpunk-green+1))))
-   `(font-lock-doc-face ((,class (:foreground ,cyberpunk-yellow-1))))
+   `(font-lock-doc-face ((,class (:foreground ,cyberpunk-green+1))))
    `(font-lock-function-name-face ((,class (:foreground ,cyberpunk-pink-1))))
    `(font-lock-keyword-face ((,class (:foreground ,cyberpunk-cyan))))
    ;; `(font-lock-negation-char-face ((,class (:foreground ,cyberpunk-fg))))
@@ -195,7 +196,7 @@
    `(font-lock-type-face ((,class (:foreground ,cyberpunk-green+3))))
    `(font-lock-variable-name-face ((,class (:foreground ,cyberpunk-pink))))
    `(font-lock-warning-face ((,class (:foreground ,cyberpunk-red))))
-   `(font-lock-reference-face ((,class (:foreground ,cyberpunk-violet))))
+   `(font-lock-reference-face ((,class (:foreground ,cyberpunk-pink-1))))
    `(font-lock-regexp-grouping-backslash ((,class (:foreground ,cyberpunk-yellow-4))))
    `(font-lock-regexp-grouping-construct ((,class (:foreground ,cyberpunk-red))))
 
@@ -297,13 +298,13 @@
    `(eshell-ls-archive ((,class (:foreground ,cyberpunk-magenta :weight bold))))
    `(eshell-ls-backup ((,class (:inherit font-lock-comment))))
    `(eshell-ls-clutter ((,class (:inherit font-lock-comment))))
-   `(eshell-ls-directory ((,class (:foreground ,cyberpunk-blue+1 :weight bold))))
+   `(eshell-ls-directory ((,class (:foreground ,cyberpunk-violet :weight bold))))
    `(eshell-ls-executable ((,class (:foreground ,cyberpunk-red+1 :weight bold))))
    `(eshell-ls-unreadable ((,class (:foreground ,cyberpunk-fg))))
    `(eshell-ls-missing ((,class (:inherit font-lock-warning))))
    `(eshell-ls-product ((,class (:inherit font-lock-doc))))
    `(eshell-ls-special ((,class (:foreground ,cyberpunk-yellow :weight bold))))
-   `(eshell-ls-symlink ((,class (:foreground ,cyberpunk-cyan :weight bold))))
+   `(eshell-ls-symlink ((,class (:foreground ,cyberpunk-violet :weight bold))))
 
    ;; flymake
    `(flymake-errline ((,class (:foreground ,cyberpunk-red-1 :weight bold :underline t))))
