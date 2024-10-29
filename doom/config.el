@@ -54,7 +54,7 @@
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "M-i") '+neotree/find-this-file)
 (global-set-key (kbd "M-m") 'neotree-toggle)
-(global-set-key (kbd "M-e") 'eshell-toggle)
+(global-set-key (kbd "M-e") '+eshell/toggle)
 
 ;; -----------------------------------------------------------------------------------------
 ;;                          Numbering
