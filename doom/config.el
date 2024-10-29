@@ -12,7 +12,9 @@
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (set-frame-parameter frame 'undecorated t)))
+
 (scroll-bar-mode -1)
+(window-divider-mode 0)
 ;; -----------------------------------------------------------------------------------------
 ;;                              Optimization
 ;; -----------------------------------------------------------------------------------------
@@ -34,6 +36,12 @@
   :config
   (gcmh-mode 1))
 
+;; this is for windows, to use eshell more efficiently
+(add-hook 'eshell-mode-hook (lambda () (company-mode -1)))
+(setq eshell-cmpl-cycle-completions nil)
+
+(setq company-idle-delay 0.5) ;; Adjust delay to 0.5 seconds (or higher)
+
 ;; -----------------------------------------------------------------------------------------
 ;;                              Windows
 ;; -----------------------------------------------------------------------------------------
@@ -44,6 +52,9 @@
 
 (require 'ace-window)
 (global-set-key (kbd "M-o") 'ace-window)
+(global-set-key (kbd "M-i") '+neotree/find-this-file)
+(global-set-key (kbd "M-m") 'neotree-toggle)
+(global-set-key (kbd "M-e") 'eshell-toggle)
 
 ;; -----------------------------------------------------------------------------------------
 ;;                          Numbering
@@ -114,7 +125,7 @@
   "Highlight everything after // or /* in comments with a custom face."
   (font-lock-add-keywords nil
    '(("//.*" 0 'custom-comment-face t)          ;; Single-line comments after //
-     ("#.*" 0 'custom-comment-face t)
+ ;;    ("#.*" 0 'custom-comment-face t)
      ("/\\*\\(.\\|\n\\)*?\\*/" 0 'custom-comment-face t))) ;; Multi-line comments /* ... */
   (font-lock-flush))
 ;; Hook the function to C/C++ modes, or any other mode where you want it:
