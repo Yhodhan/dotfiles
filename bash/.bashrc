@@ -2,6 +2,8 @@ eval "$(oh-my-posh init bash)"
 eval "$(oh-my-posh init bash --config C:/Users/Ad_maiorem/.PoshThemes/slim.omp.json)"
 eval "$(zoxide init bash)"
 
+PS1='\[\e[0;32m\]zykhadas\[\e[0;31m\](¿)\[\e[0;32m\]Aegis \[\e[1;35m\]¿> \[\e[1;35m\](¿) \[\e[0m\]'
+
 export LS_COLORS="di=0;35:fi=0;36:ln=1;35:ex=1;32"
 
 alias ls='ls --color=auto'
@@ -22,4 +24,4 @@ alias grb='git rebase'
 alias ggsup='git branch --set-upstream-to=origin/(git_current_branch)'
 alias emas='emacsclientw -c -F "((fullscreen ))"'
 alias emkill='emacsclientw.exe -e "(kill-emacs)"'
-
+alias cls='clear'
