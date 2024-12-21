@@ -39,22 +39,22 @@ return {
     },
     {
       key = "j",
-      mods = "SHIFT",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.ActivatePaneDirection 'Down'
     },
     {
       key = "k",
-      mods = "SHIFT",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.ActivatePaneDirection 'Up'
     },
     {
       key = "h",
-      mods = "SHIFT",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.ActivatePaneDirection 'Left'
     },
     {
       key = "l",
-      mods = "SHIFT",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.ActivatePaneDirection 'Right'
     }
   }
