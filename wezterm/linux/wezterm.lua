@@ -2,8 +2,9 @@ local wezterm = require("wezterm")
 
 return {
   default_prog = {"nu"},
-  color_scheme = "Galizur",
-  window_background_opacity = 90,
+  color_scheme = "Andromeda",
+  --color_scheme = "Galizur",
+  --window_background_opacity = 90,
   enable_tab_bar = false,
   window_padding = {
     left = 0.5,
@@ -17,12 +18,14 @@ return {
   exit_behavior = "Close",
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   window_decorations = "RESIZE",
-  default_cursor_style = 'SteadyBar', 
-  colors = {
-	cursor_bg = "deeppink",
-	cursor_fg = "deeppink",
-	cursor_border = "deeppink",
-  },
+  default_cursor_style = 'BlinkingBlock', 
+  cursor_blink_rate = 600,
+  animation_fps = 1,
+ -- colors = {
+--	cursor_bg = "deeppink",
+--	cursor_fg = "deeppink",
+--	cursor_border = "deeppink",
+ -- },
   keys = {
     {
       key = "v",
@@ -36,23 +39,23 @@ return {
     },
     {
       key = "j",
-      mods = "CTRL",
-      action = wezterm.action.ActivatePaneDirection 'Left'
-    },
-    {
-      key = ";",
-      mods = "CTRL",
-      action = wezterm.action.ActivatePaneDirection 'Right'
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.ActivatePaneDirection 'Down'
     },
     {
       key = "k",
-      mods = "CTRL",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.ActivatePaneDirection 'Up'
     },
     {
+      key = "h",
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.ActivatePaneDirection 'Left'
+    },
+    {
       key = "l",
-      mods = "CTRL",
-      action = wezterm.action.ActivatePaneDirection 'Down'
+      mods = "CTRL|SHIFT",
+      action = wezterm.action.ActivatePaneDirection 'Right'
     }
   }
 }
