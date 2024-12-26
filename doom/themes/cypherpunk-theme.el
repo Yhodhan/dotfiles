@@ -202,7 +202,7 @@
 
    `(c-annotation-face ((,class (:inherit font-lock-constant-face))))
 
-   `(gui-element ((,class (:background ,cyberpunk-gray-5 :foreground ,cyberpunk-blue-6))))
+   `(gui-element ((,class (:background ,cyberpunk-gray-5 :foreground ,cyberpunk-violet))))
 
    ;;; newsticker
    ;; These are currently placeholders that probably look terrible.
@@ -294,7 +294,7 @@
    `(ert-test-result-unexpected ((,class (:foreground ,cyberpunk-red :background ,cyberpunk-bg))))
 
    ;; eshell
-   `(eshell-prompt ((,class (:foreground ,cyberpunk-blue-5 :weight bold))))
+   `(eshell-prompt ((,class (:foreground ,cyberpunk-violet :weight bold))))
    `(eshell-ls-archive ((,class (:foreground ,cyberpunk-magenta :weight bold))))
    `(eshell-ls-backup ((,class (:inherit font-lock-comment))))
    `(eshell-ls-clutter ((,class (:inherit font-lock-comment))))
@@ -742,8 +742,8 @@
    `(slime-repl-inputed-output-face ((,class (:foreground ,cyberpunk-red))))
 
   ;;; ansi-term
-   `(term-color-black ((,class (:foreground ,cyberpunk-bg
-                                            :background ,cyberpunk-bg-1))))
+  ;; `(term-color-black ((,class (:foreground ,cyberpunk-bg
+  ;;                                          :background ,cyberpunk-bg-1))))
    `(term-color-red ((,class (:foreground ,cyberpunk-red-2
                                           :background ,cyberpunk-red-4))))
    `(term-color-green ((,class (:foreground ,cyberpunk-green
@@ -760,10 +760,10 @@
                                             :background ,cyberpunk-bg-1))))
    ;; term-default-fg-color & term-default-bg-color are obsolete, kept
    ;; here for compatibility reasons.
-   `(term-default-fg-color ((,class (:inherit term-color-white))))
-   `(term-default-bg-color ((,class (:inherit term-color-black))))
+   ;;`(term-default-fg-color ((,class (:inherit term-color-white))))
+   ;;`(term-default-bg-color ((,class (:inherit term-color-black))))
    ;; Used in 24.3 and later to replace above.
-   `(term ((,class (:foreground ,cyberpunk-fg :background ,cyberpunk-bg))))
+  ;; `(term ((,class (:foreground ,cyberpunk-fg :background ,cyberpunk-bg))))
 
    ;; volatile-highlights
    `(vhl/default-face ((,class (:background ,cyberpunk-gray-5))))
