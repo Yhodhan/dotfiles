@@ -51,4 +51,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dreverse
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/home/garuda/\x2eemacs\x2ed/bin\x1e/home/garuda/\x2eelixir\x2dls\x1e/home/garuda/\x2elocal/bin\x1e/home/garuda/\x2ejulia/bin\x1e/home/garuda/\x2econfig/emacs/bin\x1e/home/garuda/\x2eserver
+SETUVAR fish_user_paths:/c/Users/Ad_maiorem/\x2eemacs\x2ed/bin\x1e/c/emacs/bin\x1e/c/Users/Ad_maiorem/\x2essh\x1e/home/garuda/\x2eemacs\x2ed/bin\x1e/home/garuda/\x2eelixir\x2dls\x1e/home/garuda/\x2elocal/bin\x1e/home/garuda/\x2ejulia/bin\x1e/home/garuda/\x2econfig/emacs/bin\x1e/home/garuda/\x2eserver
