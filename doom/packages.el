@@ -9,3 +9,4 @@
 (package! all-the-icons-completion)
 (package! gcmh)
 (package! ace-window)
+(package! sweet-theme)

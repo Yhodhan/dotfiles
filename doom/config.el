@@ -1,7 +1,7 @@
 ;; -----------------------------------------------------------------------------------------
 ;;                              Themes and decoration
 ;; -----------------------------------------------------------------------------------------
-(setq doom-theme 'cyberpunk)
+(setq doom-theme 'sweet)
 (setq doom-font (font-spec :family "Cascadia Mono" :size 22 :weight 'medium))
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
 
@@ -61,7 +61,7 @@
 ;; -----------------------------------------------------------------------------------------
 
 ;; Set relative line numbers as default for active windows
-(setq display-line-numbers-type 'nil)
+(setq display-line-numbers-type 'relative)
 
 ;; -----------------------------------------------------------------------------------------
 ;;                                 ORG Mode
