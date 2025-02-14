@@ -9,12 +9,14 @@ def create_left_prompt [] {
         $relative_pwd => ([' ' $relative_pwd] | path join)
     }
 
-    let path_color = (ansi green_bold)
-    let separator_color = (ansi green_bold)
+    let path_color = (ansi '#FF00FF')
+    let separator_color = (ansi '#FF00FF')
     let path_segment = $"($path_color)($dir)"
 
+
     let path = $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
-    [(ansi reset) (ansi red_bold) "⋊>" (ansi green_bold) " (" (ansi purple_bold) "λ" (ansi green_bold) ")" (ansi purple_bold) ".", $path] | str join
+    [(ansi reset) (ansi '#FF1493') "⋊>" (ansi '#FF00FF') " ~", $path] | str join
+
 }
 
 def create_right_prompt [] {
@@ -73,5 +75,5 @@ $env.NU_PLUGIN_DIRS = [
 zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
 source ~/.zoxide.nu
 
-oh-my-posh init nu --config ~/.PoshThemes/slim.omp.json
+#oh-my-posh init nu --config ~/.PoshThemes/native.omp.json
  
