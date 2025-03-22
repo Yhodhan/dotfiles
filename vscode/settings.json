@@ -61,13 +61,14 @@
             ]
         }
     ],
-    "workbench.iconTheme": "sweet-vscode-icons",
     "workbench.colorTheme": "Sweet vscode",
     "editor.renderLineHighlight": "none",
     "editor.cursorBlinking": "blink",  // Options: "blink", "smooth", "phase", "expand", "solid"
     "workbench.colorCustomizations": {
-        "terminalCursor.foreground": "#fc1c5b",
-        "editorCursor.foreground": "#fc1c5b",
+        //"terminalCursor.foreground": "#fc1c5b",
+        //"editorCursor.foreground": "#fc1c5b",
+        "terminalCursor.foreground": "#ff0000",
+        "editorCursor.foreground": "#ff0000",
         "editorCursor.background": "#000000",
         "[vim.normalMode]": {
             "editorCursor.foreground": "#000000"
@@ -84,6 +85,7 @@
         "editorGutter.background": "#262f33",
         "editorLineNumber.foreground":"#777777",
         "editorLineNumber.activeForeground":"#ffffff",
+        "sideBar.foreground": "#ffffff",
     },
 "vim.vimrc.enable": true,
 "editor.minimap.enabled": false,
@@ -114,4 +116,5 @@
 "chat.commandCenter.enabled": false,
 "editor.scrollbar.horizontal": "hidden",
 "editor.scrollbar.vertical": "hidden",
+"workbench.iconTheme": "sweet-vscode-icons"
 }
