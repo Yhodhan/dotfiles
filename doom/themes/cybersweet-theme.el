@@ -36,7 +36,7 @@
 `(default ((t (:background ,color0 :foreground ,color1 ))))
 `(hl-line ((t (:background ,color2 ))))
 `(cursor ((t (:foreground ,color1 ))))
-`(region ((t (:background ,color3 ))))
+`(region ((t (:background ,"#000000" :foreground ,color1))))
 `(secondary-selection ((t (:background ,color4 ))))
 `(fringe ((t (:background ,color0 ))))
 `(mode-line-inactive ((t (:background ,color5 :foreground ,color6 ))))
@@ -63,8 +63,8 @@
 
 
 ;; display-line-number-mode
-`(line-number ((t (:foreground ,color0 ))))
-`(line-number-current-line ((t (:foreground ,color0 ))))
+`(line-number ((t (:foreground ,"#888888"))))
+`(line-number-current-line ((t (:foreground ,"#ffffff"))))
 
 
 `(lsp-face-semhl-namespace ((t (:foreground ,color13)))) ; red
