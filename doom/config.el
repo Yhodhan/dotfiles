@@ -1,7 +1,9 @@
-;; -----------------------------------------------------------------------------------------
+;;; -*- lexical-binding: t -*-
+;;;
+;; -----------------------------------------------------------------------------------------  -*- lexical-binding: t; -*-
 ;;                              Themes and decoration
 ;; -----------------------------------------------------------------------------------------
-(setq doom-theme 'sweet)
+(setq doom-theme 'cyberpunk)
 (setq doom-font (font-spec :family "Cascadia Mono" :size 22 :weight 'medium))
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
 
@@ -54,7 +56,7 @@
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "M-i") '+neotree/find-this-file)
 (global-set-key (kbd "M-m") 'neotree-toggle)
-(global-set-key (kbd "M-e") '+eshell/toggle)
+(global-set-key (kbd "M-t") '+vterm/toggle)
 
 ;; -----------------------------------------------------------------------------------------
 ;;                          Numbering
@@ -90,7 +92,7 @@
 ;; to change cursor color use echo -ne '\033]12;deeppink\007'
 ;;(setq evil-normal-state-cursor '(box "deeppink"))
 ;;(setq evil-insert-state-cursor '(bar "deeppink"))
-(blink-cursor-mode t)
+(setq blink-cursor-mode t)
 (setq blink-cursor-interval 0.6)
 
 ;; Add multiple cursors
@@ -132,7 +134,7 @@
 ;;(add-hook 'c-mode-hook 'my-highlight-custom-comments)
 ;;(add-hook 'c++-mode-hook 'my-highlight-custom-comments)
 
-(add-hook 'prog-mode-hook 'highlight-comments)
+;;(add-hook 'prog-mode-hook 'highlight-comments)
 
 ;; =========================
 ;;   HELIX EMULATION LAYER
@@ -238,6 +240,9 @@
 ; delete enclosed area
 (key-chord-define evil-normal-state-map "md" 'delete-elements-between-matching-symbols)
 
+(key-chord-define evil-normal-state-map "vp" 'split-window-right)
+(key-chord-define evil-normal-state-map "sp" 'split-window-below)
+
 (require 'evil-matchit)
 (global-evil-matchit-mode t)
 (key-chord-define evil-normal-state-map "mm" 'evilmi-jump-items)
@@ -254,7 +259,7 @@
           "--completion-style=bundled"
           "--header-insertion=iwyu"
           "--header-insertion-decorators"
-          "--fallback-style=gnu")))
+          "--fallback-style=llvm")))
 
 ;; -----------------------------------------------------------------------------------------
 ;;                                Avy
@@ -265,3 +270,27 @@
 
 (global-set-key (kbd "M-p") 'evil-avy-goto-char)
 (key-chord-define evil-normal-state-map "cc" 'avy-goto-line)
+
+;; modificate C++ mod
+;; NOTE: this is only needed with cybersweet modified theme
+
+(defun highlight-function-calls ()
+  (font-lock-add-keywords
+   nil
+   '(("\\([a-zA-Z_][a-zA-Z0-9_]*\\)[ \t]*("
+      1 'my/function-call-face))))
+
+(add-hook 'c-mode-common-hook #'highlight-function-calls)
+
+(defface my/function-call-face
+  '((t :foreground "#06c993")) ; \u2190 your green (color11)
+  "Face for function calls.")
+
+;; Visual mode highlighting
+(custom-theme-set-faces
+ 'cyberpunk
+
+ ;; Highlight the selected region (visual mode)
+ `(region ((t (:background , "#000000":foreground ,"#ffffff"))))  ;; Ensure this color is distinct for region selection
+ `(highlight ((t (:background ,"#ffffff"))))                  ;; Adds extra highlighting to visual selection for better visibility
+)
