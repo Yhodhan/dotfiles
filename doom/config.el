@@ -271,26 +271,48 @@
 (global-set-key (kbd "M-p") 'evil-avy-goto-char)
 (key-chord-define evil-normal-state-map "cc" 'avy-goto-line)
 
-;; modificate C++ mod
+;; modificate Themes mod
 ;; NOTE: this is only needed with cybersweet modified theme
 
 (defun highlight-function-calls ()
   (font-lock-add-keywords
    nil
    '(("\\([a-zA-Z_][a-zA-Z0-9_]*\\)[ \t]*("
-      1 'my/function-call-face))))
+      1 'mode/function-call-face))))
 
-(add-hook 'c-mode-common-hook #'highlight-function-calls)
+(defun highlight-punctuation ()
+  (font-lock-add-keywords
+   nil
+   '(("\\([][(){}:,+*/%-]\\)" ; match single-character operators/punctuation
+      1 'mode/punctuation-face)))
+  (font-lock-flush))
 
-(defface my/function-call-face
+(defun highlight-equal()
+  (font-lock-add-keywords
+   nil
+   '(("\\([=<>]\\)" ; match single-character operators/punctuation
+      1 'mode/equal-face)))
+  (font-lock-flush))
+
+;; function calls
+(defface mode/function-call-face
   '((t :foreground "#06c993")) ; \u2190 your green (color11)
   "Face for function calls.")
 
-;; Visual mode highlighting
-(custom-theme-set-faces
- 'cyberpunk
+;; equal symbol
+(defface mode/equal-face
+  '((t :foreground "#f60055")) ;; Sweet red (color14 in your theme)
+  "Face for equal.")
 
- ;; Highlight the selected region (visual mode)
- `(region ((t (:background , "#000000":foreground ,"#ffffff"))))  ;; Ensure this color is distinct for region selection
- `(highlight ((t (:background ,"#ffffff"))))                  ;; Adds extra highlighting to visual selection for better visibility
-)
+;; rest of symbols
+(defface mode/punctuation-face
+  '((t :foreground "#00bfc4")) ;; Sweet red (color14 in your theme)
+  "Face for punctuation and operators.")
+
+(add-hook 'c-mode-common-hook #'highlight-function-calls)
+(add-hook 'c-mode-common-hook #'highlight-punctuation)
+(add-hook 'c-mode-common-hook #'highlight-equal)
+
+(add-hook 'python-mode-hook #'highlight-function-calls)
+(add-hook 'python-mode-hook #'highlight-punctuation)
+(add-hook 'python-mode-hook #'highlight-equal)
