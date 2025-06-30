@@ -197,7 +197,7 @@
 	},
 	{
 		"key": "alt+u",
-		"command": "smartmulticursor.insertCursorAbove",
+		"command": "editor.action.insertCursorAbove",
 		"when": "editorTextFocus"
 	},
 	{
@@ -209,15 +209,10 @@
 		"key": "backspace ctrl",
 		"command": "emacs.cursorWordLeft",
 		"when": "editorTextFocus"
-	},
+	},	
 	{
 		"key": "alt+b",
-		"command": "-emacs.cursorWordLeft",
-		"when": "editorTextFocus"
-	},
-	{
-		"key": "alt+b",
-		"command": "smartmulticursor.insertCursorBelow",
+		"command": "editor.action.insertCursorBelow",
 		"when": "editorTextFocus"
 	},
 	{
@@ -264,5 +259,45 @@
 		"key": "alt+d",
 		"command": "notebook.addFindMatchToSelection",
 		"when": "config.notebook.multiCursor.enabled && notebookCellEditorFocused && activeEditor == 'workbench.editor.notebook'"
+	},
+	{
+		"key": "ctrl+d",
+		"command": "-emacs-mcx.deleteForwardChar",
+		"when": "editorTextFocus && !editorReadonly"
+	},
+	{
+		"key": "ctrl+b",
+		"command": "-emacs-mcx.backwardChar",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+b",
+		"command": "-emacs-mcx.backwardChar",
+		"when": "terminalFocus"
+	},
+	{
+		"key": "ctrl+f",
+		"command": "-emacs-mcx.forwardChar",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+f",
+		"command": "-emacs-mcx.forwardChar",
+		"when": "terminalFocus"
+	},
+	{
+		"key": "ctrl+b",
+		"command": "-emacs-mcx.isearchExit",
+		"when": "editorFocus && findWidgetVisible && !config.emacs-mcx.cursorMoveOnFindWidget && !isComposing && !replaceInputFocussed"
+	},
+	{
+		"key": "ctrl+[ u",
+		"command": "-emacs-mcx.transformToUppercase",
+		"when": "config.emacs-mcx.useMetaPrefixCtrlLeftBracket && editorTextFocus && !editorReadonly"
+	},
+	{
+		"key": "ctrl+u",
+		"command": "-emacs-mcx.universalArgument",
+		"when": "editorTextFocus"
 	},
 ]
