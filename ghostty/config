@@ -1,0 +1,11 @@
+# resize-overlay-duration = 4s 200ms
+window-decoration = false
+font-family = Cascadia Mono
+cursor-style-blink = true
+cursor-invert-fg-bg = false
+cursor-color = "#ff0000"
+background-opacity = 0.5
+confirm-close-surface = false
+
+# theme = Misterioso
+theme = Dracula 
