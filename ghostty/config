@@ -4,8 +4,19 @@ font-family = Cascadia Mono
 cursor-style-blink = true
 cursor-invert-fg-bg = false
 cursor-color = "#ff0000"
-background-opacity = 0.5
+background-opacity = 0.8
 confirm-close-surface = false
 
-# theme = Misterioso
-theme = Dracula 
+#theme = Misterioso
+#theme = Neon 
+theme = Abernathy 
+#theme = Dracula 
+
+keybind = alt+h=new_split:down
+keybind = alt+v=new_split:right
+
+# Navigate to the split on the left
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:down
+keybind = ctrl+shift+k=goto_split:up
+keybind = ctrl+shift+l=goto_split:right
