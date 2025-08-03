@@ -3,8 +3,8 @@
 ;; -----------------------------------------------------------------------------------------  -*- lexical-binding: t; -*-
 ;;                              Themes and decoration
 ;; -----------------------------------------------------------------------------------------
-(setq doom-theme 'cyberpunk)
-(setq doom-font (font-spec :family "Cascadia Mono" :size 22 :weight 'medium))
+(setq doom-theme 'doom-monokai-classic)
+(setq doom-font (font-spec :family "Cascadia Mono" :size 24 :weight 'medium))
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
 
 (setq initial-frame-alist '((fullscreen . maximized)))
@@ -15,8 +15,14 @@
           (lambda (frame)
             (set-frame-parameter frame 'undecorated t)))
 
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 (scroll-bar-mode -1)
 (window-divider-mode 0)
+(setq-default mode-line-format nil)
+(setq lsp-signature-auto-activate nil)
+(setq max-mini-window-height 0.2) ;; Set to 20% of the frame height
+
 ;; -----------------------------------------------------------------------------------------
 ;;                              Optimization
 ;; -----------------------------------------------------------------------------------------
@@ -56,7 +62,7 @@
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "M-i") '+neotree/find-this-file)
 (global-set-key (kbd "M-m") 'neotree-toggle)
-(global-set-key (kbd "M-t") '+vterm/toggle)
+(global-set-key (kbd "M-e") '+vterm/toggle)
 
 ;; -----------------------------------------------------------------------------------------
 ;;                          Numbering
@@ -87,11 +93,17 @@
         (require 'evil-terminal-cursor-changer)
         (evil-terminal-cursor-changer-activate))
 
-(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
+(after! treesit
+  (setq treesit-font-lock-level 4))
+
+;; (remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
+
+(custom-set-faces!
+  '(hl-line :background "#313a3d"))  ;; replace with your preferred color
 
 ;; to change cursor color use echo -ne '\033]12;deeppink\007'
-;;(setq evil-normal-state-cursor '(box "deeppink"))
-;;(setq evil-insert-state-cursor '(bar "deeppink"))
+;;(setq evil-normal-state-cursor '(box "#dddddd"))
+;;(setq evil-insert-state-cursor '(bar "#dddddd"))
 (setq blink-cursor-mode t)
 (setq blink-cursor-interval 0.6)
 
@@ -274,45 +286,38 @@
 ;; modificate Themes mod
 ;; NOTE: this is only needed with cybersweet modified theme
 
-(defun highlight-function-calls ()
-  (font-lock-add-keywords
-   nil
-   '(("\\([a-zA-Z_][a-zA-Z0-9_]*\\)[ \t]*("
-      1 'mode/function-call-face))))
+;;(defun highlight-function-calls ()
+;;  (font-lock-add-keywords
+;;   nil
+;;   '(("\\([a-zA-Z_][a-zA-Z0-9_]*\\)[ \t]*("
+;;      1 'mode/function-call-face))))
 
-(defun highlight-punctuation ()
-  (font-lock-add-keywords
-   nil
-   '(("\\([][(){}:,+*/%-]\\)" ; match single-character operators/punctuation
-      1 'mode/punctuation-face)))
-  (font-lock-flush))
-
-(defun highlight-equal()
-  (font-lock-add-keywords
-   nil
-   '(("\\([=<>]\\)" ; match single-character operators/punctuation
-      1 'mode/equal-face)))
-  (font-lock-flush))
-
-;; function calls
-(defface mode/function-call-face
-  '((t :foreground "#06c993")) ; \u2190 your green (color11)
-  "Face for function calls.")
-
-;; equal symbol
-(defface mode/equal-face
-  '((t :foreground "#f60055")) ;; Sweet red (color14 in your theme)
-  "Face for equal.")
-
-;; rest of symbols
-(defface mode/punctuation-face
-  '((t :foreground "#00bfc4")) ;; Sweet red (color14 in your theme)
-  "Face for punctuation and operators.")
-
-(add-hook 'c-mode-common-hook #'highlight-function-calls)
-(add-hook 'c-mode-common-hook #'highlight-punctuation)
-(add-hook 'c-mode-common-hook #'highlight-equal)
-
-(add-hook 'python-mode-hook #'highlight-function-calls)
-(add-hook 'python-mode-hook #'highlight-punctuation)
-(add-hook 'python-mode-hook #'highlight-equal)
+;;(defun highlight-punctuation ()
+;;  (font-lock-add-keywords
+;;   nil
+;;   '(("\\([][(){}:,+*/%-]\\)" ; match single-character operators/punctuation
+;;      1 'mode/punctuation-face)))
+;;  (font-lock-flush))
+;;
+;;(defun highlight-equal()
+;;  (font-lock-add-keywords
+;;   nil
+;;   '(("\\([=<>]\\)" ; match single-character operators/punctuation
+;;      1 'mode/equal-face)))
+;;  (font-lock-flush))
+;;
+;;;; function calls
+;;(defface mode/function-call-face
+;;  '((t :foreground "#06c993")) ; \u2190 your green (color11)
+;;  "Face for function calls.")
+;;
+;;;; equal symbol
+;;(defface mode/equal-face
+;;  '((t :foreground "#f60055")) ;; Sweet red (color14 in your theme)
+;;  "Face for equal.")
+;;
+;;;; rest of symbols
+;;(defface mode/punctuation-face
+;;  '((t :foreground "#00bfc4")) ;; Sweet red (color14 in your theme)
+;;  "Face for punctuation and operators.")
+;; Enable tree-sitter font-locking for better highlighting
