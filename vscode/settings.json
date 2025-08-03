@@ -68,7 +68,7 @@
         //"terminalCursor.foreground": "#fc1c5b",
         //"editorCursor.foreground": "#fc1c5b",
         "terminalCursor.foreground": "#ff0000",
-        "editorCursor.foreground": "#ff0000",
+        "editorCursor.foreground": "#f92660",
         "editorCursor.background": "#000000",
         "[vim.normalMode]": {
             "editorCursor.foreground": "#000000"
