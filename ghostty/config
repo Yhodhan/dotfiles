@@ -1,10 +1,12 @@
 # resize-overlay-duration = 4s 200ms
 window-decoration = false
+font-size = 14
 font-family = Cascadia Mono
 cursor-style-blink = true
-cursor-invert-fg-bg = false
-cursor-color = "#ff0000"
-background-opacity = 0.8
+#cursor-invert-fg-bg = true 
+cursor-color = "#f92660"
+#background-opacity = 0.2
+background-blur-radius = 20 
 confirm-close-surface = false
 
 #theme = Misterioso
@@ -20,3 +22,4 @@ keybind = ctrl+shift+h=goto_split:left
 keybind = ctrl+shift+j=goto_split:down
 keybind = ctrl+shift+k=goto_split:up
 keybind = ctrl+shift+l=goto_split:right
+
