@@ -3,7 +3,7 @@
 (package! cyberpunk-theme)
 (package! zoom)
 (package! undo-tree)
-(package! multiple-cursors)
+;(package! multiple-cursors)
 (package! evil-matchit)
 (package! key-chord)
 (package! all-the-icons-completion)

@@ -108,13 +108,13 @@
 (setq blink-cursor-interval 0.6)
 
 ;; Add multiple cursors
-(require 'multiple-cursors)
+;(require 'multiple-cursors)
 ;; multiple-cursors packages uses vanilla emacs keybindins to move arround
 ;; but this overrides are more convinient to swap modes and spawn the cursors
-(global-set-key (kbd "M-c") 'set-rectangular-region-anchor)
-(global-set-key (kbd "M-n") 'evil-normal-state)
-(global-set-key (kbd "M-a") 'mc/mark-all-dwim)
-(global-set-key (kbd "M-.") 'mc/mark-all-like-this)
+;;(global-set-key (kbd "M-c") 'set-rectangular-region-anchor)
+;;(global-set-key (kbd "M-n") 'evil-normal-state)
+;;(global-set-key (kbd "M-a") 'mc/mark-all-dwim)
+;;(global-set-key (kbd "M-.") 'mc/mark-all-like-this)
 ;; NOTES on basic vanilla emacs movement
 ;; C-f move forward  | C-b move backward
 ;; C-n next line     | C-p previous line
@@ -231,6 +231,15 @@
         (delete-region (1+ start) end))))) ;; Adjust to exclude the opening symbol
 
 
+;; multicursors evil-md
+;; Unbind the defaults
+(map! :nv "gzj" nil
+      :nv "gzk" nil)
+
+;; Rebind to Alt+b and Alt+u
+(map! :nv "M-b" #'evil-mc-make-cursor-move-next-line
+      :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
+
 ;; key-chord configuration inspired by helix
 (require 'key-chord)
 (key-chord-mode t)
@@ -246,9 +255,9 @@
 (key-chord-define evil-normal-state-map "vv" 'basic-save-buffer)
 (key-chord-define evil-normal-state-map "ff" 'lsp-format-buffer)
 
-(key-chord-define evil-visual-state-map "ma" 'add-symbols-around-region)
+;(key-chord-define evil-visual-state-map "ma" 'add-symbols-around-region)
 (key-chord-define evil-visual-state-map "md" 'delete-surrounding-symbols)
-(key-chord-define evil-visual-state-map "mr" 'replace-surrounding-symbols)
+;(key-chord-define evil-visual-state-map "mr" 'replace-surrounding-symbols)
 ; delete enclosed area
 (key-chord-define evil-normal-state-map "md" 'delete-elements-between-matching-symbols)
 
