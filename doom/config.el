@@ -1,10 +1,11 @@
 ;;; -*- lexical-binding: t -*-
-;;;
-;; -----------------------------------------------------------------------------------------  -*- lexical-binding: t; -*-
+
+;; -----------------------------------------------------------------------------------------
 ;;                              Themes and decoration
 ;; -----------------------------------------------------------------------------------------
+
 (setq doom-theme 'doom-monokai-classic)
-(setq doom-font (font-spec :family "Cascadia Mono" :size 24 :weight 'medium))
+(setq doom-font (font-spec :family "Cascadia Mono" :size 20 :weight 'medium))
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
 
 (setq initial-frame-alist '((fullscreen . maximized)))
@@ -22,6 +23,8 @@
 (setq-default mode-line-format nil)
 (setq lsp-signature-auto-activate nil)
 (setq max-mini-window-height 0.2) ;; Set to 20% of the frame height
+(setq-default display-line-numbers-width 2) ;; enough for up to 99 lines
+(fringe-mode 0)
 
 ;; -----------------------------------------------------------------------------------------
 ;;                              Optimization
@@ -45,8 +48,8 @@
   (gcmh-mode 1))
 
 ;; this is for windows, to use eshell more efficiently
-(add-hook 'eshell-mode-hook (lambda () (company-mode -1)))
-(setq eshell-cmpl-cycle-completions nil)
+;;(add-hook 'eshell-mode-hook (lambda () (company-mode -1)))
+;;(setq eshell-cmpl-cycle-completions nil)
 
 (setq company-idle-delay 0.5) ;; Adjust delay to 0.5 seconds (or higher)
 
@@ -62,7 +65,7 @@
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "M-i") '+neotree/find-this-file)
 (global-set-key (kbd "M-m") 'neotree-toggle)
-(global-set-key (kbd "M-e") '+vterm/toggle)
+;(global-set-key (kbd "M-e") '+vterm/toggle)
 
 ;; -----------------------------------------------------------------------------------------
 ;;                          Numbering
@@ -106,107 +109,6 @@
 ;;(setq evil-insert-state-cursor '(bar "#dddddd"))
 (setq blink-cursor-mode t)
 (setq blink-cursor-interval 0.6)
-
-;; Add multiple cursors
-;(require 'multiple-cursors)
-;; multiple-cursors packages uses vanilla emacs keybindins to move arround
-;; but this overrides are more convinient to swap modes and spawn the cursors
-;;(global-set-key (kbd "M-c") 'set-rectangular-region-anchor)
-;;(global-set-key (kbd "M-n") 'evil-normal-state)
-;;(global-set-key (kbd "M-a") 'mc/mark-all-dwim)
-;;(global-set-key (kbd "M-.") 'mc/mark-all-like-this)
-;; NOTES on basic vanilla emacs movement
-;; C-f move forward  | C-b move backward
-;; C-n next line     | C-p previous line
-;; C-a start of line | C-e end of line
-;; C-/ undo          | C-j create new line
-;; C-x 0 delete window | C-x 1 delete other windows
-;; C-x 2 spawn horizontal | C-x 3 spawn vertical
-
-;; -----------------------------------------------------------------------------------------
-;;                            Comments behavior
-;; -----------------------------------------------------------------------------------------
-
-
-(defface custom-comment-face
-  '((t :foreground "#444444"   ;; Set your custom foreground color (text color)
-       :background "#a3a3a3"   ;; Set your custom background color
-       ))
-  "Face for highlighting comments after // or /*."
-  :group 'custom-faces)
-
-(defun highlight-comments ()
-  "Highlight everything after // or /* in comments with a custom face."
-  (font-lock-add-keywords nil
-   '(("//.*" 0 'custom-comment-face t)          ;; Single-line comments after //
- ;;    ("#.*" 0 'custom-comment-face t)
-     ("/\\*\\(.\\|\n\\)*?\\*/" 0 'custom-comment-face t))) ;; Multi-line comments /* ... */
-  (font-lock-flush))
-;; Hook the function to C/C++ modes, or any other mode where you want it:
-;;(add-hook 'c-mode-hook 'my-highlight-custom-comments)
-;;(add-hook 'c++-mode-hook 'my-highlight-custom-comments)
-
-;;(add-hook 'prog-mode-hook 'highlight-comments)
-
-;; =========================
-;;   HELIX EMULATION LAYER
-;; =========================
-
-;; Delete the surrounding symbols of a selected area.
-(defun delete-surrounding-symbols (start end)
-  "Delete surrounding symbols of a selected region in visual mode."
-  (interactive "r")
-  (save-excursion
-    ;; Move to end and check the character after the region
-    (goto-char end)
-    (let ((end-symbol (char-after)))
-      (when (member end-symbol '(?\) ?\] ?\} ?\" ?\' ?\`))
-        (delete-char 1)))
-    ;; Move to start and check the character before the region
-    (goto-char start)
-    (let ((start-symbol (char-before)))
-      (when (member start-symbol '(?\( ?\[ ?\{ ?\" ?\' ?\`))
-        (delete-char -1)))))
-
-;; replace the surrounding area symbols with others.
-(defun replace-surrounding-symbols (start end symbol)
-  "Replace surrounding symbols of a selected region with matching symbols."
-  (interactive "r\ncEnter opening symbol: ")
-  (let ((open-symbol symbol)
-        (close-symbol (pcase symbol
-                        (?\( ?\))
-                        (?\[ ?\])
-                        (?\{ ?\})
-                        (?\" ?\")
-                        (?\' ?\')
-                        (?` ?`))))
-    (save-excursion
-      ;; Replace end symbol
-      (goto-char end)
-      (let ((end-symbol (char-after)))
-        (when (member end-symbol '(?\) ?\] ?\} ?\" ?\' ?\`))
-          (delete-char 1)
-          (insert close-symbol)))
-      ;; Replace start symbol
-      (goto-char start)
-      (let ((start-symbol (char-before)))
-        (when (member start-symbol '(?\( ?\[ ?\{ ?\" ?\' ?\`))
-          (delete-char -1)
-          (insert open-symbol))))))
-
-(defun add-symbols-around-region (start end open-symbol)
-  "Add symbols around the selected region."
-  (interactive "r\nMEnter opening symbol: ")
-  (let* ((close-symbol (cond
-                        ((string= open-symbol "(") ")")
-                        ((string= open-symbol "[") "]")
-                        ((string= open-symbol "{") "}")
-                        (t (error "No matching closing symbol found")))))
-    (save-excursion
-      (goto-char end)
-      (insert close-symbol)
-      (goto-char start)
-      (insert open-symbol))))
 
 (defun delete-elements-between-matching-symbols ()
   "Delete all elements between two matching symbols."
@@ -255,9 +157,6 @@
 (key-chord-define evil-normal-state-map "vv" 'basic-save-buffer)
 (key-chord-define evil-normal-state-map "ff" 'lsp-format-buffer)
 
-;(key-chord-define evil-visual-state-map "ma" 'add-symbols-around-region)
-(key-chord-define evil-visual-state-map "md" 'delete-surrounding-symbols)
-;(key-chord-define evil-visual-state-map "mr" 'replace-surrounding-symbols)
 ; delete enclosed area
 (key-chord-define evil-normal-state-map "md" 'delete-elements-between-matching-symbols)
 
@@ -274,13 +173,13 @@
 ;;                                LSP
 ;; -----------------------------------------------------------------------------------------
 ;; configuration of the lsp
-(after! lsp-clangd
-  (setq lsp-clients-clangd-args
-        '("--clang-tidy"
-          "--completion-style=bundled"
-          "--header-insertion=iwyu"
-          "--header-insertion-decorators"
-          "--fallback-style=llvm")))
+;;(after! lsp-clangd
+;;  (setq lsp-clients-clangd-args
+;;        '("--clang-tidy"
+;;          "--completion-style=bundled"
+;;          "--header-insertion=iwyu"
+;;          "--header-insertion-decorators"
+;;          "--fallback-style=llvm")))
 
 ;; -----------------------------------------------------------------------------------------
 ;;                                Avy
@@ -291,42 +190,3 @@
 
 (global-set-key (kbd "M-p") 'evil-avy-goto-char)
 (key-chord-define evil-normal-state-map "cc" 'avy-goto-line)
-
-;; modificate Themes mod
-;; NOTE: this is only needed with cybersweet modified theme
-
-;;(defun highlight-function-calls ()
-;;  (font-lock-add-keywords
-;;   nil
-;;   '(("\\([a-zA-Z_][a-zA-Z0-9_]*\\)[ \t]*("
-;;      1 'mode/function-call-face))))
-
-;;(defun highlight-punctuation ()
-;;  (font-lock-add-keywords
-;;   nil
-;;   '(("\\([][(){}:,+*/%-]\\)" ; match single-character operators/punctuation
-;;      1 'mode/punctuation-face)))
-;;  (font-lock-flush))
-;;
-;;(defun highlight-equal()
-;;  (font-lock-add-keywords
-;;   nil
-;;   '(("\\([=<>]\\)" ; match single-character operators/punctuation
-;;      1 'mode/equal-face)))
-;;  (font-lock-flush))
-;;
-;;;; function calls
-;;(defface mode/function-call-face
-;;  '((t :foreground "#06c993")) ; \u2190 your green (color11)
-;;  "Face for function calls.")
-;;
-;;;; equal symbol
-;;(defface mode/equal-face
-;;  '((t :foreground "#f60055")) ;; Sweet red (color14 in your theme)
-;;  "Face for equal.")
-;;
-;;;; rest of symbols
-;;(defface mode/punctuation-face
-;;  '((t :foreground "#00bfc4")) ;; Sweet red (color14 in your theme)
-;;  "Face for punctuation and operators.")
-;; Enable tree-sitter font-locking for better highlighting

@@ -1,4 +1,3 @@
-
 export LS_COLORS="di=0;35:fi=0;36:ln=1;35:ex=1;32"
 
 alias ls='ls --color=auto'
@@ -20,3 +19,6 @@ alias ggsup='git branch --set-upstream-to=origin/(git_current_branch)'
 alias emas='emacsclientw -c -F "((fullscreen ))"'
 alias emkill='emacsclientw.exe -e "(kill-emacs)"'
 alias cls='clear'
+
+echo -ne '\033]12;#f92660\007'
+fish
