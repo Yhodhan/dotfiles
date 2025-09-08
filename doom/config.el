@@ -153,7 +153,7 @@
 (key-chord-define evil-normal-state-map "gn" 'next-buffer)
 (key-chord-define evil-normal-state-map "gp" 'previous-buffer)
 (key-chord-define evil-normal-state-map "ge" 'end-of-buffer)
-(key-chord-define evil-normal-state-map "bk" 'kill-current-buffer)
+;(key-chord-define evil-normal-state-map "bk" 'kill-current-buffer)
 (key-chord-define evil-normal-state-map "vv" 'basic-save-buffer)
 (key-chord-define evil-normal-state-map "ff" 'lsp-format-buffer)
 
@@ -189,4 +189,4 @@
   (:map isearch-mode-map ("C-j" . avy-isearch)))
 
 (global-set-key (kbd "M-p") 'evil-avy-goto-char)
-(key-chord-define evil-normal-state-map "cc" 'avy-goto-line)
+;;(key-chord-define evil-normal-state-map "cc" 'avy-goto-line)
