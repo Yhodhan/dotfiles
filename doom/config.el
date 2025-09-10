@@ -132,6 +132,18 @@
         (goto-char start)
         (delete-region (1+ start) end))))) ;; Adjust to exclude the opening symbol
 
+;; copy lines
+(defun avy-copy-line-to-point ()
+  "Copy a line selected via `avy-goto-line` to the current cursor location without moving."
+  (interactive)
+  (let ((line-content
+         (save-excursion
+           (avy-goto-line) ;; jump temporarily
+           (buffer-substring (line-beginning-position) (line-end-position)))))
+    (save-excursion
+      (beginning-of-line)
+      (open-line 1)
+      (insert line-content))))
 
 ;; multicursors evil-md
 ;; Unbind the defaults
@@ -141,6 +153,9 @@
 ;; Rebind to Alt+b and Alt+u
 (map! :nv "M-b" #'evil-mc-make-cursor-move-next-line
       :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
+      :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
+
+(map! :nv "tt" #'avy-copy-line-to-point)
 
 ;; key-chord configuration inspired by helix
 (require 'key-chord)
