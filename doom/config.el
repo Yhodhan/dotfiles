@@ -4,6 +4,7 @@
 ;;                              Themes and decoration
 ;; -----------------------------------------------------------------------------------------
 
+;; prefered color for background is 262f33
 (setq doom-theme 'doom-monokai-classic)
 (setq doom-font (font-spec :family "Cascadia Mono" :size 20 :weight 'medium))
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
