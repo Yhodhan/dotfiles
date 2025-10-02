@@ -305,4 +305,13 @@
 		"command": "-emacs-mcx.universalArgument",
 		"when": "editorTextFocus"
 	},
+	{
+		"key": "alt+p",
+		"command": "extension.aceJump"
+	},
+	{
+	  "key": "ctrl+k",
+	  "command": "list.collapse",
+	  "when": "explorerViewletVisible && explorerViewletFocus && listFocus"
+	}
 ]
