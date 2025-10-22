@@ -1,9 +1,10 @@
 local wezterm = require("wezterm")
 
 return {
-  default_prog = { 'cmd.exe', '/k', 'C:\\Users\\Ad_maiorem\\.config\\wezterm\\init_vs_nu.bat' },
+  default_prog = {"nu"},
   color_scheme = "Galizur",
-  window_background_opacity = 90,
+  window_background_opacity = .90,
+  window_close_confirmation = 'AlwaysPrompt',
   enable_tab_bar = false,
   window_padding = {
     left = 0.5,
@@ -19,39 +20,39 @@ return {
   window_decorations = "RESIZE",
   default_cursor_style = 'SteadyBar', 
   colors = {
-	cursor_bg = "deeppink",
-	cursor_fg = "deeppink",
-	cursor_border = "deeppink",
+	cursor_bg = "f92660",
+	cursor_fg = "black",
+	cursor_border = "f92660",
   },
   keys = {
     {
       key = "v",
-      mods = "ALT",
+      mods = "CTRL|ALT",
       action = wezterm.action.SplitVertical {domain = 'CurrentPaneDomain'}
     },
     {
       key = "h",
-      mods = "ALT",
+      mods = "CTRL|ALT",
       action = wezterm.action.SplitHorizontal {domain = 'CurrentPaneDomain'}
     },
     {
-      key = "j",
-      mods = "CTRL",
+      key = "h",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.ActivatePaneDirection 'Left'
     },
     {
-      key = ";",
-      mods = "CTRL",
+      key = "l",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.ActivatePaneDirection 'Right'
     },
     {
       key = "k",
-      mods = "CTRL",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.ActivatePaneDirection 'Up'
     },
     {
-      key = "l",
-      mods = "CTRL",
+      key = "j",
+      mods = "CTRL|SHIFT",
       action = wezterm.action.ActivatePaneDirection 'Down'
     }
   }
