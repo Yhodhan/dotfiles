@@ -3,7 +3,7 @@
 # version = "0.91.0"
 
 def create_left_prompt [] {
-    let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
+    let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
         '' => ''
         $relative_pwd => ([' ' $relative_pwd] | path join)
@@ -75,5 +75,4 @@ $env.NU_PLUGIN_DIRS = [
 zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
 source ~/.zoxide.nu
 
-#oh-my-posh init nu --config ~/.PoshThemes/native.omp.json
  
