@@ -5,7 +5,6 @@ return {
 --  color_scheme = "Retro Green",
   color_scheme = "Andromeda",
   window_background_opacity = 90,
-  --window_background_image = "C:/Users/ADmaiorem/Pictures/fallout.jpg", 
   enable_tab_bar = false,
   window_padding = {
     left = 0.5,
@@ -18,6 +17,7 @@ return {
   font_size = 16.0,
   exit_behavior_messaging = "None",
   exit_behavior = "Close",
+  window_close_confirmation = "NeverPrompt",
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   window_decorations = "RESIZE",
   default_cursor_style = 'BlinkingBlock', 
