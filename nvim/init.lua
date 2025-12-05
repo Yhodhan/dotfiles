@@ -65,24 +65,24 @@ require("lazy").setup({
    end,
   },
 
-{
-  "LunarVim/horizon.nvim",
-  lazy = false,  -- load at startup
-  config = function()
-    vim.o.termguicolors = true  -- enable true colors
+  {
+  	"LunarVim/horizon.nvim",
+  	lazy = false,  -- load at startup
+  	config = function()
+    	vim.o.termguicolors = true  -- enable true colors
 
-    require("horizon").setup({
-      -- optional settings
-      bold = true,
-      italic = true,
-      underline = true,
-      -- you can add more options here if needed
-    })
+    	require("horizon").setup({
+      	-- optional settings
+     	bold = true,
+      	italic = true,
+      	underline = true,
+      	-- you can add more options here if needed
+    	})
 
-    vim.cmd.colorscheme("colorscheme horizon")
-  end,
-},
+     	-- vim.cmd.colorscheme("colorscheme horizon")
 
+  	end,
+    },
   {
     "goolord/alpha-nvim",
     config = function()
@@ -167,7 +167,7 @@ require("lazy").setup({
     config = function()
       require("nvim-treesitter.configs").setup({
         -- ensure_installed = { "lua_ls", "pyright", "ts_ls" },
-	ensure_installed = { "lua", "python", "typescript", "javascript" },
+	-- ensure_installed = { "lua", "python", "typescript", "javascript" },
         highlight = { enable = true },
         indent = { enable = true },
       })
@@ -188,7 +188,7 @@ require("lazy").setup({
     dependencies = "mason.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pyright", "ts_" },
+        ensure_installed = { "lua_ls", "pyright", "ts_ls" },
       })
     end,
   },
@@ -277,9 +277,25 @@ require("lazy").setup({
      vim.g.VM_maps['AddCursorUp'] = '<A-u>'
      vim.g.VM_maps['AddCursorDown'] = '<A-b>'
    end
-}
-
-
+  },
+ {
+  "yamatsum/nvim-cursorline",
+  lazy = false,
+  config = function()
+    require("nvim-cursorline").setup({
+      cursorline = {
+        enable = true,
+        timeout = 0,  -- highlight fades after 1s of inactivity
+        number = false,  -- highlight number column too
+      },
+      cursorword = {
+        enable = true,
+        min_length = 3,
+        hl = { underline = true },
+      },
+    })
+  end,
+ }
 })
 
 ------------------------------------------------------------
@@ -337,7 +353,6 @@ vim.keymap.set("n", "qq", "<C-w>c", { desc = "Close current pane" })
 -- List buffers like Emacs SPC b b
 vim.keymap.set("n", "<leader>bb", ":Telescope buffers<CR>", { desc = "List open buffers" })
  
-
 -- LSP
 
 require("plugins.lsp")
