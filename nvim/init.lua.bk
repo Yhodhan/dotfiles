@@ -1,0 +1,232 @@
+-- Doom-like Neovim Configuration (Single-file)
+-- Drop this entire file into: ~/.config/nvim/init.lua
+
+------------------------------------------------------------
+-- 0. Bootstrap lazy.nvim
+------------------------------------------------------------
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+------------------------------------------------------------
+-- 1. Options (minimal Doom-like defaults)
+------------------------------------------------------------
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.termguicolors = true
+vim.opt.mouse = "a"
+vim.opt.updatetime = 200
+
+------------------------------------------------------------
+-- 2. Plugins
+------------------------------------------------------------
+require("lazy").setup({
+
+  ----------------------------------------------------------
+  -- UI
+  ----------------------------------------------------------
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("which-key").setup({})
+    end,
+  },
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup({})
+      vim.cmd.colorscheme("catppuccin")
+    end,
+  },
+
+  {
+    "goolord/alpha-nvim",
+    config = function()
+      require("alpha").setup(require("alpha.themes.dashboard").config)
+    end,
+  },
+
+  ----------------------------------------------------------
+  -- Editing (Doom-like motions)
+  ----------------------------------------------------------
+  "tpope/vim-repeat",
+  "kylechui/nvim-surround",
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  },
+  {
+    "ggandor/leap.nvim",
+    config = function()
+      require("leap").add_default_mappings()
+    end,
+  },
+
+  ----------------------------------------------------------
+  -- Telescope (SPC f)
+  ----------------------------------------------------------
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local wk = require("which-key")
+      wk.register({
+        f = {
+          f = { "<cmd>Telescope find_files<CR>", "Find files" },
+          g = { "<cmd>Telescope live_grep<CR>", "Grep" },
+          b = { "<cmd>Telescope buffers<CR>", "Buffers" },
+        },
+      }, { prefix = "<leader>" })
+      require("telescope").setup({})
+    end,
+  },
+
+  ----------------------------------------------------------
+  -- File tree (Neo-tree)
+  ----------------------------------------------------------
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("neo-tree").setup({})
+      vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>")
+    end,
+  },
+
+  ----------------------------------------------------------
+  -- Treesitter (syntax + highlight)
+  ----------------------------------------------------------
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "lua", "python", "bash", "javascript", "json", "html", "css",
+        },
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
+    end,
+  },
+
+  ----------------------------------------------------------
+  -- LSP (Doom :lsp module)
+  ----------------------------------------------------------
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = "mason.nvim",
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls", "pyright", "tsserver" },
+      })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      local lspconfig = require("lspconfig")
+      lspconfig.lua_ls.setup({})
+    end,
+  },
+
+  ----------------------------------------------------------
+  -- Completion (Doom's :completion)
+  ----------------------------------------------------------
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "L3MON4D3/LuaSnip",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
+    },
+    config = function()
+      local cmp = require("cmp")
+      cmp.setup({
+        snippet = {
+          expand = function(args) require("luasnip").lsp_expand(args.body) end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<Tab>"] = cmp.mapping.select_next_item(),
+          ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "path" },
+          { name = "buffer" },
+        }),
+      })
+    end,
+  },
+
+  ----------------------------------------------------------
+  -- Org-like system (Neorg)
+  ----------------------------------------------------------
+  {
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    config = function()
+      require("neorg").setup({
+        load = {
+          ["core.defaults"] = {},
+          ["core.concealer"] = {},
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+                notes = "~/notes",
+              },
+            },
+          },
+        },
+      })
+    end,
+  },
+
+})
+
+------------------------------------------------------------
+-- 3. Keybinds (Doom-like global maps)
+------------------------------------------------------------
+local map = vim.keymap.set
+
+-- Buffers
+map("n", "<leader>bd", ":bdelete<CR>")
+
+-- Windows
+map("n", "<leader>ws", "<C-w>s")
+map("n", "<leader>wv", "<C-w>v")
+
+-- Git placeholder (add LazyGit if installed)
+map("n", "<leader>gg", ":LazyGit<CR>")
+
+-- Projects (Telescope)
+map("n", "<leader>pp", ":Telescope projects<CR>")
+
