@@ -4,16 +4,29 @@ return {
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- optional, for file icons
+      "nvim-tree/nvim-web-devicons", -- optional
       "MunifTanjim/nui.nvim",
     },
-    config = function()
-      require("neo-tree").setup({
-        close_if_last_window = true,
-        popup_border_style = "rounded",
-        enable_git_status = true,
-        enable_diagnostics = true,
+
+    opts = function(_, opts)
+      -- merge your custom options into lazyvim defaults
+      opts.close_if_last_window = true
+      opts.popup_border_style = "rounded"
+      opts.enable_git_status = true
+      opts.enable_diagnostics = true
+
+      -- ensure window table exists
+      opts.window = opts.window or {}
+
+      -- ensure mappings table exists
+      opts.window.mappings = vim.tbl_extend("force", opts.window.mappings or {}, {
+        ["<Tab>"] = {
+          "toggle_node",
+          desc = "Expand/Collapse folder",
+        },
       })
+
+      return opts
     end,
   },
 }
