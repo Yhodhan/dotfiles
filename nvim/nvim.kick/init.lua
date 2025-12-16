@@ -106,22 +106,17 @@ require("lazy").setup({
 
   -- Multicursor
   {
-    "jake-stewart/multicursor.nvim",
+    "mg979/vim-visual-multi",
+    branch = "master",
+    keys = {
+      { "<M-u>", "<Plug>(VM-Add-Cursor-Up)", mode = { "n", "v" } },
+      { "<M-b>", "<Plug>(VM-Add-Cursor-Down)", mode = { "n", "v" } },
+    },
     config = function()
-      local mc = require("multicursor-nvim")
-
-      mc.setup()
-
-      vim.keymap.set({ "n", "v" }, "<C-n>", mc.matchAddCursor, { desc = "Add cursor" })
-      vim.keymap.set({ "n", "v" }, "<C-p>", mc.matchSkipCursor, { desc = "Skip cursor" })
-
-      vim.keymap.set("n", "<Esc>", function()
-        if mc.hasCursors() then
-          mc.clearCursors()
-        else
-          vim.cmd("noh")
-        end
-      end)
+      vim.g.VM_maps = {
+        ["Add Cursor Up"] = "<M-u>",
+        ["Add Cursor Down"] = "<M-b>",
+      }
     end,
   },
   {
@@ -170,6 +165,15 @@ require("lazy").setup({
 
     -- Enable it
     vim.lsp.enable("clangd")
+  end,
+},
+{
+  "windwp/nvim-autopairs",
+  event = "InsertEnter",
+  config = function()
+    require("nvim-autopairs").setup({
+      check_ts = true, -- treesitter (safe even if not installed)
+    })
   end,
 },
 })
@@ -229,6 +233,7 @@ map("n", "<C-x>1", "<C-w>o", opts)  -- delete other windows (only current remain
 -- movement
 map("n", "gl", "$", opts)      -- go to end of line
 map("n", "gh", "0", opts)      -- go to beginning of line
+map("n", "qq", ":exit<CR>", opts)
 
 -- buffer control
 map("n", "gn", ":bnext<CR>", opts)     -- next buffer
