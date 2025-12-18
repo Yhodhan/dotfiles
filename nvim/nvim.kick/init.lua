@@ -165,14 +165,65 @@ require("lazy").setup({
 
     -- Enable it
     vim.lsp.enable("clangd")
+
+    -- =========================
+    -- Rust
+    -- =========================
+    vim.lsp.config("rust_analyzer", {
+      cmd = { "rust-analyzer" },
+      filetypes = { "rust" },
+      root_markers = { "Cargo.toml", ".git" },
+      settings = {
+        ["rust-analyzer"] = {
+          cargo = {
+            allFeatures = true,
+          },
+          checkOnSave = {
+            command = "clippy",
+          },
+        },
+      },
+    })
+
+    vim.lsp.enable("rust_analyzer")
   end,
-},
+ },
 {
   "windwp/nvim-autopairs",
   event = "InsertEnter",
   config = function()
     require("nvim-autopairs").setup({
       check_ts = true, -- treesitter (safe even if not installed)
+    })
+  end,
+},
+{
+  "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip",
+  },
+  config = function()
+    local cmp = require("cmp")
+
+    cmp.setup({
+      snippet = {
+        expand = function(args)
+          require("luasnip").lsp_expand(args.body)
+        end,
+      },
+      mapping = cmp.mapping.preset.insert({
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<Tab>"] = cmp.mapping.select_next_item(),
+        ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+      }),
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+      },
     })
   end,
 },
