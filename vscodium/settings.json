@@ -61,14 +61,15 @@
             ]
         }
     ],
-    "workbench.colorTheme": "Sweet vscode",
-    "editor.renderLineHighlight": "none",
+    "workbench.colorTheme": "Horizon",
+//    "editor.renderLineHighlight": true,
     "editor.cursorBlinking": "blink",  // Options: "blink", "smooth", "phase", "expand", "solid"
     "workbench.colorCustomizations": {
         //"terminalCursor.foreground": "#fc1c5b",
         //"editorCursor.foreground": "#fc1c5b",
         "terminalCursor.foreground": "#ff0000",
-        "editorCursor.foreground": "#ff0000",
+        //"editorCursor.foreground": "#f92660",
+        "editorCursor.foreground": "#ff033e",
         "editorCursor.background": "#000000",
         "[vim.normalMode]": {
             "editorCursor.foreground": "#000000"
@@ -93,6 +94,7 @@
 "workbench.activityBar.location": "bottom",
 "workbench.statusBar.visible": false,
 "workbench.editor.showTabs": "none",
+"window.commandCenter": false,
 "cmake.pinnedCommands": [
     "workbench.action.tasks.configureTaskRunner",
     "workbench.action.tasks.runTask"
@@ -100,19 +102,21 @@
 "workbench.settings.applyToAllProfiles": [
     "workbench.colorCustomizations"
 ],
-"editor.fontSize": 16,
+"window.titleBarStyle": "custom",
+"editor.fontSize": 18,
 "editor.fontFamily": "Cascadia Mono",
 "workbench.editorAssociations": {
     "*.doc": "default"
 },
-"workbench.editor.editorActionsLocation": "titleBar",
+"workbench.layoutControl.enabled": false,
+"workbench.editor.editorActionsLocation": "hidden",
+"window.customTitleBarVisibility": "windowed",
 "breadcrumbs.enabled": false,
 "editor.stickyScroll.enabled": false,
 "editor.guides.indentation": false,
 "chat.commandCenter.enabled": false,
 "editor.scrollbar.horizontal": "hidden",
 "editor.scrollbar.vertical": "hidden",
-"window.titleSeparator": " ",
-"zenMode.showTabs": "none",
-"window.customTitleBarVisibility": "windowed"
+"clangd.path": "c:\\Users\\mmsc\\AppData\\Roaming\\VSCodium\\User\\globalStorage\\llvm-vs-code-extensions.vscode-clangd\\install\\21.1.0\\clangd_21.1.0\\bin\\clangd.exe",
+//"workbench.iconTheme": "sweet-vscode-icons"
 }
