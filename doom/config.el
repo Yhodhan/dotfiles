@@ -5,7 +5,7 @@
 ;; -----------------------------------------------------------------------------------------
 
 ;; prefered color for background is 262f33
-(setq doom-theme 'doom-monokai-classic)
+(setq doom-theme 'doom-horizon)
 (setq doom-font (font-spec :family "Cascadia Mono" :size 20 :weight 'medium))
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
 
@@ -24,7 +24,7 @@
 (setq-default mode-line-format nil)
 (setq lsp-signature-auto-activate nil)
 (setq max-mini-window-height 0.2) ;; Set to 20% of the frame height
-(setq-default display-line-numbers-width 2) ;; enough for up to 99 lines
+(setq-default display-line-numbers-width 1) ;; enough for up to 99 lines
 (fringe-mode 0)
 
 ;; -----------------------------------------------------------------------------------------
@@ -61,6 +61,8 @@
 (require 'zoom)
 (custom-set-variables
  '(zoom-size '(0.618 . 0.618)))
+
+(setq zoom-mode t)
 
 (require 'ace-window)
 (global-set-key (kbd "M-o") 'ace-window)
@@ -105,6 +107,10 @@
 (custom-set-faces!
   '(hl-line :background "#313a3d"))  ;; replace with your preferred color
 
+(custom-set-faces
+ '(font-lock-function-name-face ((t (:foreground "#25B0BC")))))
+ ;;'(font-lock-function-name-face ((t (:foreground "#2BBAC5")))))
+
 ;; to change cursor color use echo -ne '\033]12;deeppink\007'
 ;;(setq evil-normal-state-cursor '(box "#dddddd"))
 ;;(setq evil-insert-state-cursor '(bar "#dddddd"))
@@ -146,17 +152,6 @@
       (open-line 1)
       (insert line-content))))
 
-;; multicursors evil-md
-;; Unbind the defaults
-(map! :nv "gzj" nil
-      :nv "gzk" nil)
-
-;; Rebind to Alt+b and Alt+u
-(map! :nv "M-b" #'evil-mc-make-cursor-move-next-line
-      :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
-      :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
-
-(map! :nv "tt" #'avy-copy-line-to-point)
 
 ;; key-chord configuration inspired by helix
 (require 'key-chord)
@@ -185,6 +180,46 @@
 ;erase all
 (key-chord-define evil-normal-state-map "me" 'evilmi-delete-items)
 
+(use-package! avy
+  :bind
+  (:map isearch-mode-map ("C-j" . avy-isearch)))
+
+;; -----------------------------------------------------------------------------------------
+;;                             Development only modes
+;; -----------------------------------------------------------------------------------------
+ 
+;; for ladybird development only
+(add-to-list 'auto-mode-alist '("\\.ipc\\'" . c++-mode))
+
+(global-set-key (kbd "M-p") 'evil-avy-goto-char)
+
+;; asm 
+(add-to-list 'auto-mode-alist '("\\.s\\'" . asm-mode))
+(add-to-list 'auto-mode-alist '("\\.asm\\'" . asm-mode))
+
+;; Ensure .c files open in c-mode
+(add-to-list 'auto-mode-alist '("\\.c\\'" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c-mode))
+
+
+;; -----------------------------------------------------------------------------------------
+;;                             Multicursors evil-md
+;; -----------------------------------------------------------------------------------------
+;; Unbind the defaults
+(map! :nv "gzj" nil
+      :nv "gzk" nil)
+
+(map! :nv "tt" #'avy-copy-line-to-point)
+
+;; Convinient remaps
+(map! :n "C-o" #'ff-find-other-file)
+(map! :nv "C-e" #'move-end-of-line)  ;; bind insert-mode C-e to original
+
+;; Rebind to Alt+b and Alt+u
+(map! :nv "M-b" #'evil-mc-make-cursor-move-next-line
+      :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
+      :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
+
 ;; -----------------------------------------------------------------------------------------
 ;;                                LSP
 ;; -----------------------------------------------------------------------------------------
@@ -200,9 +235,5 @@
 ;; -----------------------------------------------------------------------------------------
 ;;                                Avy
 ;; -----------------------------------------------------------------------------------------
-(use-package! avy
-  :bind
-  (:map isearch-mode-map ("C-j" . avy-isearch)))
-
-(global-set-key (kbd "M-p") 'evil-avy-goto-char)
 ;;(key-chord-define evil-normal-state-map "cc" 'avy-goto-line)
+
