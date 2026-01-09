@@ -6,7 +6,7 @@
 
 ;; prefered color for background is 262f33
 (setq doom-theme 'doom-horizon)
-(setq doom-font (font-spec :family "Cascadia Mono" :size 20 :weight 'medium))
+(setq doom-font (font-spec :family "Cascadia Mono" :size 22 :weight 'medium))
 ;;(add-to-list 'default-frame-alist '(undecorated . t))
 
 (setq initial-frame-alist '((fullscreen . maximized)))
@@ -68,7 +68,7 @@
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "M-i") '+neotree/find-this-file)
 (global-set-key (kbd "M-m") 'neotree-toggle)
-;(global-set-key (kbd "M-e") '+vterm/toggle)
+(global-set-key (kbd "M-t") '+vterm/toggle)
 
 ;; -----------------------------------------------------------------------------------------
 ;;                          Numbering
@@ -112,8 +112,8 @@
  ;;'(font-lock-function-name-face ((t (:foreground "#2BBAC5")))))
 
 ;; to change cursor color use echo -ne '\033]12;deeppink\007'
-;;(setq evil-normal-state-cursor '(box "#dddddd"))
-;;(setq evil-insert-state-cursor '(bar "#dddddd"))
+(setq evil-normal-state-cursor '(box "#ff033e"))
+(setq evil-insert-state-cursor '(bar "#ff033e"))
 (setq blink-cursor-mode t)
 (setq blink-cursor-interval 0.6)
 
@@ -193,6 +193,7 @@
 
 (global-set-key (kbd "M-p") 'evil-avy-goto-char)
 
+
 ;; asm 
 (add-to-list 'auto-mode-alist '("\\.s\\'" . asm-mode))
 (add-to-list 'auto-mode-alist '("\\.asm\\'" . asm-mode))
@@ -200,7 +201,6 @@
 ;; Ensure .c files open in c-mode
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c-mode))
-
 
 ;; -----------------------------------------------------------------------------------------
 ;;                             Multicursors evil-md
@@ -211,13 +211,18 @@
 
 (map! :nv "tt" #'avy-copy-line-to-point)
 
+;; Make sure evil is loaded
+(with-eval-after-load 'evil
+  ;; Bind Ctrl+l in normal state
+  (define-key evil-normal-state-map (kbd "C-l") 'evil-delete-back-to-indentation))
+
 ;; Convinient remaps
 (map! :n "C-o" #'ff-find-other-file)
 (map! :nv "C-e" #'move-end-of-line)  ;; bind insert-mode C-e to original
 
 ;; Rebind to Alt+b and Alt+u
 (map! :nv "M-b" #'evil-mc-make-cursor-move-next-line
-      :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
+;;      :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
       :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
 
 ;; -----------------------------------------------------------------------------------------
