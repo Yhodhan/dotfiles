@@ -1,10 +1,11 @@
 # resize-overlay-duration = 4s 200ms
 window-decoration = false
-font-size = 14
+font-size = 16
 font-family = Cascadia Mono
 cursor-style-blink = true
 #cursor-invert-fg-bg = true 
-cursor-color = "#f92660"
+#cursor-color = "#f92660"
+cursor-color = "#ff033e"
 background-opacity = 0.8
 background-blur-radius = 50 
 confirm-close-surface = false
@@ -14,7 +15,7 @@ confirm-close-surface = false
 #theme = Abernathy 
 theme = Dracula 
 
-keybind = alt+h=new_split:down
+keybind = alt+s=new_split:down
 keybind = alt+v=new_split:right
 
 # Navigate to the split on the left
