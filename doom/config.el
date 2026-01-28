@@ -62,7 +62,7 @@
 (custom-set-variables
  '(zoom-size '(0.618 . 0.618)))
 
-(setq zoom-mode t)
+;;(setq zoom-mode t)
 
 (require 'ace-window)
 (global-set-key (kbd "M-o") 'ace-window)
@@ -111,10 +111,12 @@
  '(font-lock-function-name-face ((t (:foreground "#25B0BC")))))
  ;;'(font-lock-function-name-face ((t (:foreground "#2BBAC5")))))
 
+(custom-set-faces
+ '(font-lock-function-call-face ((t (:foreground "#25B0BC")))))
 ;; to change cursor color use echo -ne '\033]12;deeppink\007'
 (setq evil-normal-state-cursor '(box "#ff033e"))
 (setq evil-insert-state-cursor '(bar "#ff033e"))
-(setq blink-cursor-mode t)
+(blink-cursor-mode 1)
 (setq blink-cursor-interval 0.6)
 
 (defun delete-elements-between-matching-symbols ()
@@ -125,6 +127,8 @@
           close-symbol)
       (cond
        ((eq open-symbol ?\() (setq close-symbol ?\)))
+
+
        ((eq open-symbol ?\[) (setq close-symbol ?\]))
        ((eq open-symbol ?\{) (setq close-symbol ?\}))
        ((eq open-symbol ?\<) (setq close-symbol ?\>))
@@ -151,7 +155,6 @@
       (beginning-of-line)
       (open-line 1)
       (insert line-content))))
-
 
 ;; key-chord configuration inspired by helix
 (require 'key-chord)
@@ -193,10 +196,9 @@
 
 (global-set-key (kbd "M-p") 'evil-avy-goto-char)
 
-
 ;; asm 
-(add-to-list 'auto-mode-alist '("\\.s\\'" . asm-mode))
-(add-to-list 'auto-mode-alist '("\\.asm\\'" . asm-mode))
+;;(add-to-list 'auto-mode-alist '("\\.s\\'" . asm-mode))
+;;(add-to-list 'auto-mode-alist '("\\.asm\\'" . asm-mode))
 
 ;; Ensure .c files open in c-mode
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c-mode))
@@ -217,7 +219,7 @@
   (define-key evil-normal-state-map (kbd "C-l") 'evil-delete-back-to-indentation))
 
 ;; Convinient remaps
-(map! :n "C-o" #'ff-find-other-file)
+(map! :n  "C-o" #'ff-find-other-file)
 (map! :nv "C-e" #'move-end-of-line)  ;; bind insert-mode C-e to original
 
 ;; Rebind to Alt+b and Alt+u
@@ -225,6 +227,8 @@
 ;;      :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
       :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
 
+(map! :n "C-n" #'evil-scroll-line-down
+      :n "C-p" #'evil-scroll-line-up)
 ;; -----------------------------------------------------------------------------------------
 ;;                                LSP
 ;; -----------------------------------------------------------------------------------------
@@ -242,3 +246,9 @@
 ;; -----------------------------------------------------------------------------------------
 ;;(key-chord-define evil-normal-state-map "cc" 'avy-goto-line)
 
+(after! projectile
+  (add-to-list 'projectile-globally-ignored-directories "venv")
+  (add-to-list 'projectile-globally-ignored-directories ".venv"))
+
+(after! lsp-pyright
+  (setq lsp-pyright-exclude-directories ["**/venv" "**/.venv"]))
