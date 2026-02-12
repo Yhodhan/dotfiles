@@ -9,13 +9,13 @@ def create_left_prompt [] {
         $relative_pwd => ([' ' $relative_pwd] | path join)
     }
 
-    let path_color = (ansi '#00ff55')
-    let separator_color = (ansi '#00ff55')
+    let path_color = (ansi '#ff0000')
+    let separator_color = (ansi '#ff0000')
     let path_segment = $"($path_color)($dir)"
 
 
     let path = $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
-    [(ansi reset) (ansi '#00ff55') "C: >", $path] | str join
+    [(ansi reset) (ansi '#ff0000') "C: >", $path] | str join
 
 }
 
@@ -23,10 +23,10 @@ def create_right_prompt [] {
     # create a right prompt in magenta with green separators and am/pm underlined
     let time_segment = ([
         (ansi reset)
-        (ansi green)
+        (ansi red)
         (date now | format date '%X') # try to respect user's locale
-    ] | str join | str replace --regex --all "([/:])" $"(ansi green)${1}(ansi green)" |
-        str replace --regex --all "([AP]M)" $"(ansi green_underline)${1}")
+    ] | str join | str replace --regex --all "([/:])" $"(ansi red)${1}(ansi red)" |
+        str replace --regex --all "([AP]M)" $"(ansi red_underline)${1}")
 
     let last_exit_code = if ($env.LAST_EXIT_CODE != 0) {([
         (ansi rb)

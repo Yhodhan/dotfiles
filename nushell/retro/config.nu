@@ -10,7 +10,7 @@ let dark_theme = {
     # color for nushell primitives
     separator: white
     leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
-    header: green_bold
+    header: red_bold
     empty: purple 
     # Closures can be used to choose colors for specific values.
     # The value (in this case, a bool) is piped into the closure.
@@ -31,7 +31,7 @@ let dark_theme = {
     list: white
     block: white
     hints: dark_gray
-    search_result: { bg: green_bold fg: white }
+    search_result: { bg: purple_bold fg: white }
     shape_and: purple_bold
     shape_binary: purple_bold
     shape_block: purple_bold
@@ -39,9 +39,9 @@ let dark_theme = {
     shape_closure: green_bold
     shape_custom: green
     shape_datetime: purple_bold
-    shape_directory: green_bold
-    shape_external: green_bold 
-    shape_externalarg: green_bold
+    shape_directory: purple_bold
+    shape_external: purple_bold 
+    shape_externalarg: purple_bold
     shape_external_resolved: purple_bold
     shape_filepath: purple_bold 
     shape_flag: grey_bold
@@ -54,7 +54,7 @@ let dark_theme = {
     shape_keyword: purple_bold
     shape_list: green_bold
     shape_literal: purple 
-    shape_match_pattern: green
+    shape_match_pattern: purple
     shape_matching_brackets: { attr: u }
     shape_nothing: light_red
     shape_operator: purple 
@@ -63,8 +63,8 @@ let dark_theme = {
     shape_range: purple_bold
     shape_record: purple_bold
     shape_redirection: purple_bold
-    shape_signature: green_bold
-    shape_string: green
+    shape_signature: purple_bold
+    shape_string: purple
     shape_string_interpolation: purple_bold
     shape_table: purple_bold
     shape_variable: purple
@@ -256,7 +256,7 @@ $env.config = {
                 col_padding: 2
             }
             style: {
-                text: green
+                text: purple
                 selected_text: { attr: r }
                 description_text: purple 
                 match_text: { attr: u }
@@ -289,7 +289,7 @@ $env.config = {
                 correct_cursor_pos: false
             }
             style: {
-                text: green
+                text: purple
                 selected_text: { attr: r }
                 description_text: purple 
                 match_text: { attr: u }
@@ -305,7 +305,7 @@ $env.config = {
                 page_size: 10
             }
             style: {
-                text: green
+                text: purple
                 selected_text: green_reverse
                 description_text: purple 
             }
@@ -323,7 +323,7 @@ $env.config = {
                 description_rows: 10
             }
             style: {
-                text: green
+                text: purple
                 selected_text: green_reverse
                 description_text: purple 
             }
@@ -831,6 +831,30 @@ $env.config = {
     ]
 }
 
+$env.config.color_config = {
+
+    command: purple       # the command itself, e.g., `ls`
+
+    external: purple    # external commands
+
+    string: purple # strings
+
+    variable: red      # variables
+
+    shape_operator: red  # operators like `|` or `>`
+
+    shape_external: purple # external command "shapes"
+
+    shape_signature: purple # function signatures
+
+    shape_literal: red   # literals
+
+    shape_variable: red  # variables
+
+    shape_string: red    # strings
+}
+
+
 
 alias rd  = rm -rf
 alias ga  = git add 
@@ -854,9 +878,7 @@ alias grep = find str
 alias ll = ls -la
 
 #$env.LS_COLORS = "di=1;35:ln=1;36:ex=1;32"
+$env.LS_COLORS = "di=1;31:ln=1;31:so=1;31:pi=1;ex=1;31:bd=1;31:cd=1;31:su=1;31:sg=1;31:tw=1;31:ow=1;31"
 
-#source ~/.oh-my-posh.nu
 
-	
-	
-	
+
