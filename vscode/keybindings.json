@@ -232,29 +232,12 @@
 	{
 		"key": "ctrl+shift+j",
 		"command": "-find-it-faster.findFiles",
-	},	
-
-  	{ 
- 		"key": "alt+1",
-		"command": "workbench.action.focusFirstEditorGroup"
-	},
- 	{ 
-		"key": "alt+2",
-		 "command": "workbench.action.focusSecondEditorGroup"
-	},
- 	{ 
-		"key": "alt+3", 
-		"command": "workbench.action.focusThirdEditorGroup" 
-	},
- 	{ 
-		"key": "alt+4", 
-		"command": "workbench.action.focusFourthEditorGroup"
-	},
+	},		
 	{
-		"key": "alt+d",
-		"command": "-deleteWordRight",
-		"when": "editorTextFocus && !editorReadonly"
-	},	
+	  "key": "alt+o",
+	  "command": "workbench.action.navigateEditorGroups",
+	  "when": "editorTextFocus"
+	},
 	{
 		"key": "ctrl+d",
 		"command": "-notebook.addFindMatchToSelection",

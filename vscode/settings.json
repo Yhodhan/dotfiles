@@ -61,14 +61,13 @@
             ]
         }
     ],
-    "workbench.colorTheme": "Sweet vscode",
-    "editor.renderLineHighlight": "none",
+    "editor.glyphMargin": false,
     "editor.cursorBlinking": "blink",  // Options: "blink", "smooth", "phase", "expand", "solid"
     "workbench.colorCustomizations": {
-        //"terminalCursor.foreground": "#fc1c5b",
         //"editorCursor.foreground": "#fc1c5b",
-        "terminalCursor.foreground": "#ff0000",
-        "editorCursor.foreground": "#f92660",
+        //"terminalCursor.foreground": "#ff0000",
+        //"editorCursor.foreground": "#f92660",
+        "editorCursor.foreground": "#ff033e",
         "editorCursor.background": "#000000",
         "[vim.normalMode]": {
             "editorCursor.foreground": "#000000"
@@ -83,14 +82,13 @@
         "editor.background": "#262f33",
         "sideBar.background": "#262f33",
         "editorGutter.background": "#262f33",
-        "editorLineNumber.foreground":"#777777",
-        "editorLineNumber.activeForeground":"#ffffff",
+        "editorLineNumber.foreground":"#3f454f",
+        "editorLineNumber.activeForeground":"#7f848e",
         "sideBar.foreground": "#ffffff",
     },
 "vim.vimrc.enable": true,
 "editor.minimap.enabled": false,
 "editor.lineNumbers": "relative",
-"workbench.activityBar.location": "bottom",
 "workbench.statusBar.visible": false,
 "workbench.editor.showTabs": "none",
 "window.commandCenter": false,
@@ -114,7 +112,10 @@
 "editor.stickyScroll.enabled": false,
 "editor.guides.indentation": false,
 "chat.commandCenter.enabled": false,
+"editor.renderLineHighlight": "line",
 "editor.scrollbar.horizontal": "hidden",
 "editor.scrollbar.vertical": "hidden",
-"workbench.iconTheme": "sweet-vscode-icons"
+"workbench.activityBar.location": "hidden",
+"makefile.configureOnOpen": true,
+"workbench.colorTheme": "Horizon"
 }
