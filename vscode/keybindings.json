@@ -224,10 +224,11 @@
 		"key": "ctrl+alt+down",
 		"command": "-smartmulticursor.insertCursorBelow",
 		"when": "editorTextFocus"
-	},
+	}, 
 	{
-		"key": "alt+f",
-		"command": "find-it-faster.findFiles"
+	    "key": "f f",
+	    "command": "find-it-faster.findFiles",
+	    "when": "editorTextFocus"
 	},
 	{
 		"key": "ctrl+shift+j",
