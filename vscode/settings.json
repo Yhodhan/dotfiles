@@ -117,5 +117,6 @@
 "editor.scrollbar.vertical": "hidden",
 "workbench.activityBar.location": "hidden",
 "makefile.configureOnOpen": true,
-"workbench.colorTheme": "Horizon"
+"workbench.colorTheme": "Horizon",
+"workbench.editor.empty.hint": "hidden"
 }

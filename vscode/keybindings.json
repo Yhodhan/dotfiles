@@ -296,5 +296,14 @@
 	  "key": "ctrl+k",
 	  "command": "list.collapse",
 	  "when": "explorerViewletVisible && explorerViewletFocus && listFocus"
-	}
+	},
+  	{
+  	  "key": "ctrl+o",
+  	  "command": "-workbench.action.files.openFile"
+  	},
+  	{
+  	  "key": "ctrl+o",
+  	  "command": "C_Cpp.SwitchHeaderSource",
+  	  "when": "editorTextFocus"
+  	}
 ]
