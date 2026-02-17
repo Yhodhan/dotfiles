@@ -110,16 +110,6 @@
 	},
 	{
 		"key": "ctrl+j",
-		"command": "showNextParameterHint",
-		"when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
-	},
-	{
-		"key": "ctrl+k",
-		"command": "showPrevParameterHint",
-		"when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
-	},
-	{
-		"key": "ctrl+j",
 		"command": "selectNextCodeAction",
 		"when": "codeActionMenuVisible"
 	},
@@ -144,8 +134,8 @@
 		"when": "inFileBrowser"
 	},
 	{
-		"key": "delete right",
-		"command": "deleteRight",
+		"key": "ctrl+w",
+		"command": "deleteWordLeft",
 		"when": "editorTextFocus && !editorReadonly"
 	},
 	{
@@ -226,7 +216,7 @@
 		"when": "editorTextFocus"
 	}, 
 	{
-	    "key": "f f",
+	    "key": "alt+k",
 	    "command": "find-it-faster.findFiles",
 	    "when": "editorTextFocus"
 	},
@@ -275,6 +265,10 @@
 		"when": "terminalFocus"
 	},
 	{
+	 	 "key": "ctrl+r",
+	 	 "command": "-workbench.action.replaceInFiles"
+	},
+	{
 		"key": "ctrl+b",
 		"command": "-emacs-mcx.isearchExit",
 		"when": "editorFocus && findWidgetVisible && !config.emacs-mcx.cursorMoveOnFindWidget && !isComposing && !replaceInputFocussed"
@@ -306,5 +300,34 @@
   	  "key": "ctrl+o",
   	  "command": "C_Cpp.SwitchHeaderSource",
   	  "when": "editorTextFocus"
-  	}
+	},
+	{
+		"key": "ctrl+r",
+		"command": "-workbench.action.reloadWindow",
+		"when": "isDevelopment"
+	},
+	{
+		"key": "ctrl+r",
+		"command": "-emacs-mcx.isearchBackward",
+		"when": "!findInputFocussed"
+	},
+	{
+		"key": "ctrl+r",
+		"command": "-workbench.action.openRecent"
+	},
+	{
+		"key": "ctrl+r",
+		"command": "-editor.action.previousMatchFindAction",
+		"when": "findInputFocussed"
+	},
+	{
+		"key": "ctrl+r",
+		"command": "-notebook.find",
+		"when": "notebookEditorFocused && activeEditor == 'workbench.editor.interactive' || notebookEditorFocused && activeEditor == 'workbench.editor.notebook'"
+	},
+	{
+	  "key": "ctrl+l",
+	  "command": "deleteAllLeft",
+	  "when": "textInputFocus"
+	}
 ]
