@@ -326,8 +326,12 @@
 		"when": "notebookEditorFocused && activeEditor == 'workbench.editor.interactive' || notebookEditorFocused && activeEditor == 'workbench.editor.notebook'"
 	},
 	{
-	  "key": "ctrl+l",
-	  "command": "deleteAllLeft",
-	  "when": "textInputFocus"
+	  	"key": "ctrl+l",
+	  	"command": "deleteAllLeft",
+	  	"when": "textInputFocus"
+	},	
+	{
+	  "key": "alt+d",
+	  "command": "editor.action.addSelectionToNextFindMatch"
 	}
 ]
