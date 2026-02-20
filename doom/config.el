@@ -62,7 +62,9 @@
 (custom-set-variables
  '(zoom-size '(0.618 . 0.618)))
 
-;;(setq zoom-mode t)
+(use-package! zoom
+  :config
+  (zoom-mode 1))
 
 (require 'ace-window)
 (global-set-key (kbd "M-o") 'ace-window)
@@ -227,8 +229,6 @@
 ;;      :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
       :nv "M-u" #'evil-mc-make-cursor-move-prev-line)
 
-(map! :n "C-n" #'evil-scroll-line-down
-      :n "C-p" #'evil-scroll-line-up)
 ;; -----------------------------------------------------------------------------------------
 ;;                                LSP
 ;; -----------------------------------------------------------------------------------------
@@ -246,9 +246,31 @@
 ;; -----------------------------------------------------------------------------------------
 ;;(key-chord-define evil-normal-state-map "cc" 'avy-goto-line)
 
+;; -----------------------------------------------------------------------------------------
+;;                                Python development 
+;; -----------------------------------------------------------------------------------------
+
 (after! projectile
   (add-to-list 'projectile-globally-ignored-directories "venv")
-  (add-to-list 'projectile-globally-ignored-directories ".venv"))
+  (add-to-list 'projectile-globally-ignored-directories ".venv")
+  (add-to-list 'projectile-globally-ignored-directories "__pycache__")
+  (add-to-list 'projectile-globally-ignored-directories ".git"))
+
+(setq neo-hidden-regexp-list
+    '("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "\\.o$" ;; defaults
+      ;; add yours:
+      "__pycache__"))
+
+(add-hook 'python-mode-hook 'eglot-ensure)
+(use-package! eglot
+	        :config
+		  ;; Use pyright for python
+		    (add-to-list 'eglot-server-programs
+				                '(python-mode . ("pyright-langserver" "--stdio"))))
+
+(setq lsp-ui-sideline-enable nil
+      lsp-ui-doc-enable nil
+      lsp-ui-imenu-enable nil)
 
 (after! lsp-pyright
   (setq lsp-pyright-exclude-directories ["**/venv" "**/.venv"]))
