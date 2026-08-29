@@ -7,7 +7,7 @@
                 "<space>"
             ],
             "commands": [
-                "vspacecode.space"
+                "doom.whichKeyShow"
             ]
         },
         {
@@ -21,7 +21,26 @@
                     "args": "m"
                 }
             ]
-        }, 
+        },
+        {
+            "before": [
+                "<C-j>"
+            ],
+            "after": [
+                "i",
+                "<CR>",
+                "<Esc>",
+                "^"
+            ]
+        },
+        {
+            "before": [
+                "<C-k>"
+            ],
+            "commands": [
+                "editor.action.deleteLines"
+            ]
+        }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
@@ -29,7 +48,7 @@
                 "<space>"
             ],
             "commands": [
-                "vspacecode.space"
+                "doom.whichKeyShow"
             ]
         },
         {
@@ -62,7 +81,7 @@
         }
     ],
     "editor.glyphMargin": false,
-    "editor.cursorBlinking": "blink",  // Options: "blink", "smooth", "phase", "expand", "solid"
+    "editor.cursorBlinking": "blink", // Options: "blink", "smooth", "phase", "expand", "solid"
     "workbench.colorCustomizations": {
         //"editorCursor.foreground": "#fc1c5b",
         //"terminalCursor.foreground": "#ff0000",
@@ -82,41 +101,90 @@
         "editor.background": "#262f33",
         "sideBar.background": "#262f33",
         "editorGutter.background": "#262f33",
-        "editorLineNumber.foreground":"#3f454f",
-        "editorLineNumber.activeForeground":"#7f848e",
+        "editorLineNumber.foreground": "#3f454f",
+        "editorLineNumber.activeForeground": "#7f848e",
         "sideBar.foreground": "#ffffff",
     },
-"vim.vimrc.enable": true,
-"editor.minimap.enabled": false,
-"editor.lineNumbers": "relative",
-"workbench.statusBar.visible": false,
-"workbench.editor.showTabs": "none",
-"window.commandCenter": false,
-"cmake.pinnedCommands": [
-    "workbench.action.tasks.configureTaskRunner",
-    "workbench.action.tasks.runTask"
-],
-"workbench.settings.applyToAllProfiles": [
-    "workbench.colorCustomizations"
-],
-"window.titleBarStyle": "custom",
-"editor.fontSize": 18,
-"editor.fontFamily": "Cascadia Mono",
-"workbench.editorAssociations": {
-    "*.doc": "default"
-},
-"workbench.layoutControl.enabled": false,
-"workbench.editor.editorActionsLocation": "hidden",
-"window.customTitleBarVisibility": "windowed",
-"breadcrumbs.enabled": false,
-"editor.stickyScroll.enabled": false,
-"editor.guides.indentation": false,
-"chat.commandCenter.enabled": false,
-"editor.renderLineHighlight": "line",
-"editor.scrollbar.horizontal": "hidden",
-"editor.scrollbar.vertical": "hidden",
-"workbench.activityBar.location": "hidden",
-"makefile.configureOnOpen": true,
-"workbench.colorTheme": "Horizon",
-"workbench.editor.empty.hint": "hidden"
+    "vim.vimrc.enable": true,
+    "editor.minimap.enabled": false,
+    "editor.lineNumbers": "relative",
+    "workbench.statusBar.visible": false,
+    "workbench.editor.showTabs": "none",
+    "window.commandCenter": false,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "workbench.settings.applyToAllProfiles": [
+        "workbench.colorCustomizations"
+    ],
+    "window.titleBarStyle": "custom",
+    "editor.fontSize": 18,
+    "editor.fontFamily": "Cascadia Mono",
+    "workbench.editorAssociations": {
+        "*.doc": "default"
+    },
+    "workbench.layoutControl.enabled": false,
+    "workbench.editor.editorActionsLocation": "hidden",
+    "window.customTitleBarVisibility": "windowed",
+    "breadcrumbs.enabled": false,
+    "editor.stickyScroll.enabled": false,
+    "editor.guides.indentation": false,
+    "chat.commandCenter.enabled": false,
+    "editor.renderLineHighlight": "line",
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.vertical": "hidden",
+    "workbench.activityBar.location": "hidden",
+    "makefile.configureOnOpen": true,
+    "workbench.colorTheme": "Horizon Italic",
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.startupEditor": "none",
+    "extensions.supportAgentsWindow": {
+        "monokai.theme-monokai-pro-vscode": true
+    },
+    "workbench.iconTheme": "sweet-vscode-icons",
+    "vim.leader": "<space>",
+    "todohighlight.defaultStyle": {
+        "backgroundColor": "transparent",
+        "fontWeight": "bold"
+    },
+    "todohighlight.keywords": [
+        {
+            "text": "TODO:",
+            "color": "#eed49f",
+            "backgroundColor": "transparent",
+            "overviewRulerColor": "rgba(238,212,159,0.8)",
+            "fontWeight": "bold"
+        },
+        {
+            "text": "FIXME:",
+            "color": "#ed8796",
+            "backgroundColor": "transparent",
+            "overviewRulerColor": "rgba(237,135,150,0.8)",
+            "fontWeight": "bold"
+        },
+        {
+            "text": "NOTE:",
+            "color": "#a6da95",
+            "backgroundColor": "transparent",
+            "overviewRulerColor": "rgba(166,218,149,0.8)",
+            "fontWeight": "bold"
+        },
+        {
+            "text": "REVIEW:",
+            "color": "#c6a0f6",
+            "backgroundColor": "transparent",
+            "overviewRulerColor": "rgba(198,160,246,0.8)",
+            "fontWeight": "bold"
+        },
+        {
+            "text": "HACK:",
+            "color": "#f5a97f",
+            "backgroundColor": "transparent",
+            "overviewRulerColor": "rgba(245,169,127,0.8)",
+            "fontWeight": "bold"
+        }
+    ],
+    "window.restoreWindows": "none",
+    "window.menuBarVisibility": "compact"
 }

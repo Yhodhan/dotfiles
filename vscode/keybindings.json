@@ -333,5 +333,47 @@
 	{
 	  "key": "alt+d",
 	  "command": "editor.action.addSelectionToNextFindMatch"
-	}
+	},
+	// #region Doom Code keybindings
+	{"key":"k","command":"-magit.discard-at-point","when":"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"},
+	{"key":"g g","command":"cursorTop","when":"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"},
+	{"key":"g r","command":"magit.refresh","when":"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"},
+	{"key":"_","command":"magit.reverting","when":"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"},
+	{"key":"!","command":"magit.running","when":"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"},
+	{"key":"%","command":"magit.worktree","when":"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"},
+	{"key":"$","command":"magit.process-log","when":"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"},
+	{"key":"alt+x g","command":"-magit.status"},
+	{"key":"alt+x ctrl+g","command":"-magit.dispatch"},
+	{"key":"alt+x alt+g","command":"-magit.file-popup"},
+	{"key":"k","command":"-magit.discard-at-point","when":"editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"},
+	// #endregion Doom Code keybindings
+{
+    "key": "ctrl+p",
+    "command": "-workbench.action.quickOpen"
+},
+{
+    "key": "ctrl+n",
+    "command": "-workbench.action.files.newUntitledFile"
+},
+{
+    "key": "ctrl+n",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+},
+{
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+},
+{
+    "key": "ctrl+n",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "quickInputWidgetVisible"
+},
+{
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "quickInputWidgetVisible"
+}
+
 ]
